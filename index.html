@@ -25,15 +25,15 @@
         .subtitle { font-size: 1.5rem; color: var(--text-muted); font-weight: 300; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
         .notice-box { background-color: var(--bg-light); border-left: 4px solid var(--autodesk-blue); padding: 20px; border-radius: 4px; text-align: left; margin-bottom: 40px; font-size: 0.95rem; }
         .modules-section { padding: 40px 0; }
-        .modules-section h2 { font-size: 2.2rem; margin-bottom: 40px; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .modules-section h2 { font-size: 2.2rem; margin-bottom: 15px; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px; margin-top: 40px; }
         .card { background: #FFFFFF; border: 1px solid #E5E5E5; padding: 30px; border-radius: 8px; box-shadow: var(--box-shadow); }
-        .card h3 { font-size: 1.25rem; margin-bottom: 15px; color: var(--text-main); }
+        .card h3 { font-size: 1.25rem; margin-bottom: 5px; color: var(--text-main); }
         .card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 10px; }
         .card .fr-text { border-top: 1px dashed #E5E5E5; padding-top: 10px; margin-top: 10px; font-style: italic; }
         .roadmap-section { background-color: var(--bg-light); padding: 60px 0; border-radius: 12px; margin-bottom: 60px; }
         .roadmap-content { max-width: 800px; margin: 0 auto; }
-        .roadmap-content h2 { font-size: 2.2rem; margin-bottom: 30px; text-align: center; }
+        .roadmap-content h2 { font-size: 2.2rem; margin-bottom: 15px; text-align: center; }
         .roadmap-item { margin-bottom: 25px; }
         .roadmap-item strong { display: block; font-size: 1.1rem; margin-bottom: 5px; }
         footer { padding: 60px 0; text-align: center; background-color: var(--bg-light); border-radius: 12px; margin-bottom: 40px; }
@@ -44,72 +44,106 @@
 </head>
 <body>
     <div class="container">
-        <!-- TOP: SECTION VITRINE BILINGUE POUR VALIDER L'ADN AUTODESK -->
+        
+        <!-- Hero Section -->
         <header>
             <h1>SmartBimPeï</h1>
             <div class="subtitle">The Ultimate Revit® Suite for Agile Pre-Synthesis & Model Quality Control.</div>
+            <div style="font-size: 1.2rem; color: var(--text-muted); font-weight: 300; margin-top: -30px; margin-bottom: 40px; font-style: italic;">La suite Revit® ultime pour une pré-synthèse agile et le contrôle qualité des maquettes.</div>
+            
             <div class="notice-box">
-                <p>🇫🇷 L'extension <strong>SmartBimPeï</strong> est en phase finale de R&D active et sera très prochainement disponible sur l'Autodesk® App Store pour les versions Revit 2024 à 2027.</p>
+                <p>🇲🇬 L'extension <strong>SmartBimPeï</strong> est en phase finale de R&D active et sera très prochainement disponible sur l'Autodesk® App Store pour les versions Revit 2024 à 2027.</p>
                 <p>🇬🇧 The <strong>SmartBimPeï</strong> suite is in its final active R&D phase and will soon be available on the Autodesk® App Store, supporting Revit versions 2024 to 2027.</p>
             </div>
         </header>
 
+        <!-- Modules Section Part 1 -->
         <section class="modules-section">
             <h2>Five expert modules built for modern BIM workflows.</h2>
+            <h3 style="text-align: center; font-size: 1.2rem; font-weight: 300; color: var(--text-muted); font-style: italic;">Cinq modules experts conçus pour les flux de travail BIM modernes</h3>
+            
             <div class="grid">
+                
+                <!-- Card 1 -->
                 <div class="card">
                     <h3>1. Clash Detection & Smart Openings</h3>
+                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Détection de Conflits & Réservations Intelligentes</h4>
                     <p>Advanced clash management with automated opening generation for RVT/IFC interoperability.</p>
                     <p class="fr-text">Gestion avancée des interférences géométriques et génération automatique de réservations paramétriques.</p>
                 </div>
+
+                <!-- Card 2 -->
                 <div class="card">
                     <h3>2. Model Cleaning & Duplicate Detector</h3>
+                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Nettoyage de Maquette & Détecteur de Doublons</h4>
                     <p>Advanced tools to optimize model performance and instantly clean up redundant modeling data.</p>
                     <p class="fr-text">Outils d'optimisation des performances de la maquette et nettoyage des éléments MEP modélisés en doublon.</p>
                 </div>
+
+                <!-- Card 3 -->
                 <div class="card">
                     <h3>3. Global Quantity Takeoff & Costing</h3>
+                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Métré Global & Estimation Financière</h4>
                     <p>Multi-model takeoff capabilities (RVT/IFC) combined with a customizable cost estimation system.</p>
                     <p class="fr-text">Extraction rapide des quantitatifs multi-maquettes (RVT/IFC) et estimation financière intégrée.</p>
                 </div>
+<!-- Card 4 -->
                 <div class="card">
                     <h3>4. Financial & Decision Dashboard</h3>
+                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Tableau de Bord Financier & Décisionnel</h4>
                     <p>Built-in reporting tools, real-time KPIs, and BCF exports for data-driven project steering.</p>
                     <p class="fr-text">Indicateurs clés en temps réel, rapports de synthèse et exports au format standard BCF.</p>
                 </div>
+
+                <!-- Card 5 -->
                 <div class="card">
                     <h3>5. BIM Data Audit & Compliance</h3>
+                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Audit de Données BIM & Conformité</h4>
                     <p>Rigorous compliance auditing features to ensure data readiness for facility management and handover (As-Built / DOE).</p>
                     <p class="fr-text">Moteur de contrôle qualité vérifiant la parfaite complétion des données métiers pour la livraison du DOE.</p>
                 </div>
+
+                <!-- Card 6 -->
                 <div class="card">
                     <h3>6. Asynchronous Modeless Engine</h3>
+                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Moteur Asynchrone & Interface Non-Bloquante</h4>
                     <p>Powered by an asynchronous framework (<code>IExternalEventHandler</code>) and modeless WPF windows to prevent Revit from freezing.</p>
                     <p class="fr-text">Interface WPF non-bloquante et exécution des calculs géométriques complexes en arrière-plan.</p>
                 </div>
+
             </div>
         </section>
 
+        <!-- Roadmap Section -->
         <section class="roadmap-section">
             <div class="roadmap-content">
                 <h2>Our Roadmap: From Active R&D to Commercial Launch</h2>
+                <h3 style="text-align: center; font-size: 1.2rem; font-weight: 300; color: var(--text-muted); margin-bottom: 40px; font-style: italic;">Notre feuille de route : De la R&D active au lancement commercial</h3>
+                
                 <div class="roadmap-item">
                     <strong>🔬 Beta Testing Phase (Current Status)</strong>
                     <p>The plugin is currently undergoing private internal testing and active R&D. No commercial licenses or payment plans are active at this stage. We leverage Revit 2024 legacy environments to consolidate our core algorithms.</p>
+                    <p style="font-style: italic; color: var(--text-muted); font-size: 0.95rem; border-top: 1px dashed #E5E5E5; padding-top: 8px; margin-top: 8px;">Le plugin est actuellement en cours de test interne privé et de R&D active. Aucune licence commerciale ou plan de paiement n'est actif à ce stade. Nous exploitons les environnements existants de Revit 2024 pour consolider nos algorithmes.</p>
                 </div>
-                <div class="roadmap-item">
+                
+                <div class="roadmap-item" style="margin-top: 40px;">
                     <strong>⚙️ Forward Compatibility Pipeline</strong>
                     <p>Our ongoing development roadmap includes a robust multi-version assembly framework targeting full migration to .NET Core (.NET 8 / .NET 10) to support Revit 2025, 2026, and upcoming 2027 releases.</p>
+                    <p style="font-style: italic; color: var(--text-muted); font-size: 0.95rem; border-top: 1px dashed #E5E5E5; padding-top: 8px; margin-top: 8px;">Notre feuille de route intègre un framework d'assemblage multi-version robuste, visant une migration complète vers .NET Core (.NET 8 / .NET 10) afin de prendre en charge Revit 2025, 2026 et les versions 2027 à venir.</p>
                 </div>
             </div>
         </section>
 
         <footer>
             <h2>Ready to transform your BIM workflow?</h2>
+            <h3 style="font-size: 1.3rem; font-weight: 300; color: var(--text-muted); margin-bottom: 20px; font-style: italic;">Prêt à transformer vos processus BIM ?</h3>
             <p>For early access requests, closed beta testing, or technical feedback, feel free to contact the developer.</p>
-            <a href="mailto:contact@smartbimpei.com" class="btn">Apply as Beta Tester</a>
+            <p style="font-style: italic; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Pour les demandes d'accès anticipé, les tests en bêta fermée ou les retours techniques, n'hésitez pas à contacter le développeur.</p>
+            
+            <a href="mailto:contact@smartbimpei.com" class="btn">Apply as Beta Tester / Devenir Testeur</a>
             <div class="copyright">© 2026 SmartBimPeï. Designed and developed by Sébastien Nigro. Based in Réunion Island.</div>
         </footer>
+
     </div>
 </body>
 </html>
