@@ -2,217 +2,123 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Manuel SmartBimPeï</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartBimPeï | Advanced Revit® Plugin Suite</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            line-height: 1.6; 
-            color: #333; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 40px; 
-            background-color: #fff;
+        :root {
+            --bg-color: #FFFFFF;
+            --text-main: #222222;
+            --text-muted: #666666;
+            --autodesk-blue: #0696D7;
+            --autodesk-blue-hover: #057fb5;
+            --bg-light: #F5F5F5;
+            --box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-        h1 { 
-            color: #2c3e50; 
-            border-bottom: 3px solid #3498db; 
-            padding-bottom: 10px; 
-            font-size: 2.5em;
-        }
-        h2 { 
-            color: #2980b9; 
-            margin-top: 40px; 
-            border-bottom: 1px solid #eee; 
-            padding-bottom: 5px;
-        }
-        h3 { 
-            color: #16a085; 
-            margin-top: 25px;
-        }
-        .intro { 
-            background: #f8f9fa; 
-            padding: 20px; 
-            border-left: 5px solid #3498db; 
-            font-style: italic; 
-            margin-bottom: 30px; 
-            font-size: 1.1em;
-            color: #555;
-        }
-        .utilisation { 
-            background: #fdfdfd; 
-            padding: 12px 15px; 
-            border-left: 4px solid #95a5a6; 
-            margin: 10px 0 5px 0; 
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        .plus-value { 
-            background: #e8f6f3; 
-            padding: 12px 15px; 
-            border-left: 4px solid #1abc9c; 
-            margin: 5px 0 20px 0; 
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        .tip { 
-            background: #fcf3cf; 
-            padding: 15px; 
-            border-radius: 5px; 
-            border: 1px solid #f1c40f; 
-            margin: 20px 0; 
-            font-weight: bold;
-        }
-        ul { margin-top: 5px; }
-        strong { color: #2c3e50; }
-        .screenshot { 
-            max-width: 100%; 
-            height: auto; 
-            border-radius: 6px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-            margin: 20px 0; 
-            border: 1px solid #ddd; 
-            display: block;
-            image-rendering: -webkit-optimize-contrast; /* Optimise la netteté */
-            image-rendering: high-quality;
-            transition: transform 0.2s;
-        }
-        .screenshot:hover {
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-        }
-        
-        @media print {
-            body { padding: 0; }
-            .page-break { page-break-before: always; }
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        header { padding: 80px 0 40px 0; text-align: center; }
+        h1 { font-size: 3.5rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 20px; }
+        .subtitle { font-size: 1.5rem; color: var(--text-muted); font-weight: 300; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .notice-box { background-color: var(--bg-light); border-left: 4px solid var(--autodesk-blue); padding: 20px; border-radius: 4px; text-align: left; margin-bottom: 40px; font-size: 0.95rem; }
+        .modules-section { padding: 40px 0; }
+        .modules-section h2 { font-size: 2.2rem; margin-bottom: 40px; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .card { background: #FFFFFF; border: 1px solid #E5E5E5; padding: 30px; border-radius: 8px; box-shadow: var(--box-shadow); }
+        .card h3 { font-size: 1.25rem; margin-bottom: 15px; color: var(--text-main); }
+        .card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 10px; }
+        .card .fr-text { border-top: 1px dashed #E5E5E5; padding-top: 10px; margin-top: 10px; font-style: italic; }
+        .roadmap-section { background-color: var(--bg-light); padding: 60px 0; border-radius: 12px; margin-bottom: 60px; }
+        .roadmap-content { max-width: 800px; margin: 0 auto; }
+        .roadmap-content h2 { font-size: 2.2rem; margin-bottom: 30px; text-align: center; }
+        .roadmap-item { margin-bottom: 25px; }
+        .roadmap-item strong { display: block; font-size: 1.1rem; margin-bottom: 5px; }
+        .manual-section { border-top: 2px solid #E5E5E5; padding-top: 60px; margin-top: 60px; }
+        .manual-section h2 { font-size: 2.5rem; margin-bottom: 30px; text-align: center; }
+        .manual-section h3 { font-size: 1.6rem; margin-top: 40px; margin-bottom: 20px; color: var(--autodesk-blue); border-bottom: 1px solid #E5E5E5; padding-bottom: 10px; }
+        .manual-section h4 { font-size: 1.2rem; margin-top: 20px; margin-bottom: 10px; color: #444; }
+        .manual-section p { margin-bottom: 15px; color: #333; }
+        .manual-section ul { margin-left: 20px; margin-bottom: 20px; }
+        .manual-section li { margin-bottom: 8px; }
+        footer { padding: 60px 0; text-align: center; background-color: var(--bg-light); border-radius: 12px; margin-bottom: 40px; }
+        .btn { display: inline-block; background-color: var(--autodesk-blue); color: #FFFFFF; text-decoration: none; padding: 15px 35px; font-weight: 600; border-radius: 4px; margin-top: 20px; }
+        .btn:hover { background-color: var(--autodesk-blue-hover); }
+        .copyright { margin-top: 40px; font-size: 0.85rem; color: var(--text-muted); }
     </style>
 </head>
 <body>
-
-    <h1>📘 Manuel de Présentation & Utilisation : SmartBimPeï</h1>
-
-    <div class="intro">
-        <strong>SmartBimPeï</strong> est la suite logicielle professionnelle ultime intégrée à Revit, conçue pour transformer le processus fastidieux de synthèse technique et de nettoyage de maquettes en une expérience fluide, automatisée et hautement fiable.
-    </div>
-
-    <h2>🌟 Introduction : Pourquoi SmartBimPeï ?</h2>
-
-    <h3>À qui s'adresse cet outil ?</h3>
-    <p>Ce plugin a été pensé par et pour les <strong>BIM Managers</strong>, les <strong>Coordinateurs BIM</strong>, les <strong>Projeteurs (CVC, Plomberie, Elec, Archi)</strong> et les <strong>Chefs d'Entreprise</strong>.</p>
-
-    <h3>Quelle est sa mission principale ?</h3>
-    <p>Dans le monde du BIM, la détection des conflits (clashs) et leur résolution (création de réservations, communication) sont des processus chronophages qui coûtent extrêmement cher aux entreprises. <strong>SmartBimPeï</strong> supprime ces goulots d'étranglement grâce à :</p>
-    <ul>
-        <li><strong>L'automatisation intelligente</strong> : Oubliez la création manuelle de réservations un par un. Le plugin gère des fusions de réseaux complexes et des murs courbes.</li>
-        <li><strong>La communication standardisée</strong> : En utilisant les standards OpenBIM (BCF), vous facilitez la communication avec les équipes externes sur des plateformes comme <em>BIMcollab</em> ou <em>BIM Track</em>.</li>
-        <li><strong>La visibilité de gestion</strong> : Un tableau de bord décisionnel permet aux chefs d'entreprise d'évaluer la santé du projet en un coup d'œil.</li>
-    </ul>
-
-    <div class="page-break"></div>
-
-    <h2>⚙️ Module 1 : Smart Clash Detector (Le Moteur de Synthèse)</h2>
-    <p>Ce module est le cœur de SmartBimPeï. Il ne se contente pas de trouver des clashs ; il les <em>comprend</em> pour vous proposer des solutions concrètes.</p>
-
-    <img class="screenshot" src="images/photo1.png" alt="Smart Clash Detector Interface">
-
-    <h3>1.1 Le Panneau de Configuration (À gauche)</h3>
-    <p>Ce panneau vous permet de paramétrer votre recherche de façon chirurgicale.</p>
-
-    <h4>Sélection Modèle A & Modèle B</h4>
-    <div class="utilisation"><strong>⚙️ Utilisation :</strong> Choisissez les modèles à croiser (ex: Modèle Architectural Hôte vs Lien Réseaux MEP).</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Évite d'analyser toute la maquette inutilement. Vous ciblez précisément les corps d'état qui vous intéressent (ex: Murs vs Gaines).</div>
-
-    <h4>Tolérance (mm)</h4>
-    <div class="utilisation"><strong>⚙️ Utilisation :</strong> Définissez la distance de pénétration acceptable avant de signaler un clash.</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Évite les "faux positifs" causés par des affleurements de quelques millimètres qui seront facilement réglés sur chantier.</div>
-
-    <h4>Filtres "Taille min." (Modèles A et B)</h4>
-    <div class="utilisation"><strong>⚙️ Utilisation :</strong> Saisissez une dimension minimale (ex: 70mm pour les murs, 40mm pour les tuyaux) sous laquelle l'élément est purement ignoré.</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Temps de calcul drastiquement réduit et pertinence accrue. On ne perd pas de temps à faire des réservations pour un tuyau multicouche de 16mm qui peut être percé à la perceuse sur chantier.</div>
-
-    <h4>Marge Auto-Réservation</h4>
-    <div class="utilisation"><strong>⚙️ Utilisation :</strong> Indique le débord (ex: 50mm) qui sera ajouté autour de la gaine lors de la pose du vide.</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Permet d'anticiper l'isolation de la gaine et le calfeutrement au feu sans avoir à faire de calculs manuels.</div>
-
-    <h3>1.2 Le Tableau de Synthèse (Au centre)</h3>
-
-    <h4>Le Regroupement Intelligent (Smart Grouping)</h4>
-    <div class="utilisation"><strong>⚙️ Ce que ça fait :</strong> Si un mur est traversé par 3 gaines très proches, l'outil ne crée pas 3 clashs différents, mais un seul ID de clash regroupé.</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Réduit la fatigue visuelle du coordinateur et permet de traiter le problème dans son ensemble plutôt qu'au cas par cas.</div>
-
-    <h4>La Colonne "Dimension Resa"</h4>
-    <div class="utilisation"><strong>⚙️ Ce que ça fait :</strong> Affiche en direct les dimensions finales du trou généré (Largeur x Profondeur) après avoir cliqué sur générer.</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Le projeteur voit immédiatement l'impact architectural du vide sur la maquette sans avoir à aller l'inspecter. S'il voit 1500 x 500, il sait tout de suite qu'il faut alerter le bureau d'études Structure.</div>
-
-    <div class="page-break"></div>
-
-    <h3>1.3 Les Actions de Résolution (En bas)</h3>
-
-    <h4>Bouton 👁️ "Isoler Clash"</h4>
-    <div class="utilisation"><strong>⚙️ Utilisation :</strong> Ouvre une vue 3D centrée sur le clash sélectionné.</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Contrairement aux outils standards de Revit, SmartBimPeï applique une charte graphique professionnelle : les éléments en conflit apparaissent en couleurs vives transparentes, tandis que le reste du bâtiment passe en gris neutre. L'œil comprend le problème en 1 seconde chrono.</div>
-
-    <img class="screenshot" src="images/photo4.png" alt="Vue 3D Isoler Clash">
-
-    <h4>Bouton 🕳️ "Générer Auto-Réservation(s)"</h4>
-    <div class="utilisation"><strong>⚙️ Utilisation :</strong> En un clic, place des familles de "vides" paramétriques à l'emplacement exact des clashs.</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> C'est la fonctionnalité phare du logiciel. Le moteur gère la <em>Sliver Tolerance</em> (fusionne automatiquement deux réservations trop proches pour éviter d'affaiblir le mur) et comprend l'orientation complexe des murs courbes. Ce qui prenait 10 minutes par trou prend maintenant 1 milliseconde.</div>
-
-    <h3>1.4 Les Exports & Rapports (La Communication)</h3>
-
-    <h4>Export BCF (BIM Collaboration Format)</h4>
-    <div class="utilisation"><strong>⚙️ Utilisation :</strong> Génère un fichier standard .bcfzip regroupant les caméras, les statuts et les commentaires de tous vos clashs.</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Un atout majeur pour la synthèse OpenBIM. Ce fichier s'importe sur des plateformes comme <em>BIMcollab</em>, <em>BIM Track</em>, ou Navisworks. Lorsque l'ingénieur MEP clique sur un clash sur la plateforme web, son logiciel l'emmène directement à la bonne vue 3D. Fini les échanges d'emails interminables avec des captures d'écran floues.</div>
-
-    <img class="screenshot" src="images/photo5.png" alt="Export BCF dans BIMcollab">
-
-    <h4>Export PDF & CSV</h4>
-    <div class="utilisation"><strong>⚙️ Utilisation :</strong> Exporte un rapport visuel ou un tableur Excel.</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Parfait pour distribuer lors de la réunion de synthèse hebdomadaire aux chefs de chantier ou sous-traitants qui n'ont pas accès à Revit.</div>
-    <img class="screenshot" src="images/photo6.png" alt="Rapport de Synthèse PDF">
-
-    <h4>Sauvegarder / Charger (XML)</h4>
-    <div class="utilisation"><strong>⚙️ Utilisation :</strong> Enregistre votre session de travail actuelle.</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Permet de fermer son PC le vendredi soir et de recharger sa session exactement là où on l'avait laissée le lundi matin, sans devoir refaire de calculs.</div>
-
-    <div class="page-break"></div>
-
-    <h2>📈 Module 2 : Health Dashboard (Tableau de Bord BIM)</h2>
-
-    <img class="screenshot" src="images/photo7.png" alt="BIM Health Dashboard">
-    
-    <div class="tip">🎯 Le coup d'œil de la direction : Le Dashboard est la tour de contrôle de votre projet.</div>
-
-    <div class="utilisation"><strong>⚙️ Utilisation :</strong> Cliquez sur le Dashboard pour analyser instantanément les indicateurs clés de la maquette (Nombre de clashs totaux, résolus, actifs).</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Conçu avec un moteur géométrique à haute précision (Intersection réelle de solides). Le chef d'entreprise peut l'ouvrir en réunion pour prouver l'avancement du projet : <em>Si le projeteur a posé 130 réservations hier, le compteur affichera mathématiquement une baisse nette le lendemain matin.</em> C'est l'outil ultime de valorisation du travail accompli.</div>
-
-    <h2>🧹 Module 3 : Duplicate Detector (Nettoyeur de Maquette)</h2>
-
-    <img class="screenshot" src="images/photo2.png" alt="Interface Duplicate Detector">
-
-    <div class="utilisation"><strong>⚙️ Utilisation :</strong> Lance une analyse complète pour trouver les éléments MEP superposés exactement au même endroit.</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Une maquette propre est primordiale pour la justesse des quantitatifs. Si une gaine est modélisée deux fois au même endroit, on la commande et on la facture deux fois. Ce module empêche des erreurs financières majeures.</div>
-
-    <h2>💰 Module 4 : Métré Express (Quantities & Pricing)</h2>
-
-    <img class="screenshot" src="images/photo3.png" alt="Interface Métré Express">
-
-    <div class="utilisation"><strong>⚙️ Utilisation :</strong> Extrait automatiquement les quantitatifs de la maquette et croise ces données avec votre bibliothèque de prix.</div>
-    <div class="plus-value"><strong>💎 Plus-value :</strong> Transforme instantanément la géométrie de Revit en un devis financier précis. Gain de temps colossal pour les économistes de la construction et les équipes d'appel d'offres.</div>
-
-    <hr style="margin-top: 50px;">
-    <p style="text-align: center; color: #7f8c8d; font-style: italic;">
-        Ce manuel est conçu pour accompagner la montée en compétence des équipes. <strong>SmartBimPeï</strong> n'est pas qu'un simple outil, c'est un atout concurrentiel majeur pour vos processus BIM.
-    </p>
-
-    <script>
-        // Rend les images cliquables pour les ouvrir en taille réelle dans un nouvel onglet
-        document.querySelectorAll('.screenshot').forEach(function(img) {
-            img.style.cursor = 'zoom-in';
-            img.title = 'Cliquez pour agrandir';
-            img.addEventListener('click', function() {
-                window.open(this.src, '_blank');
-            });
-        });
-    </script>
-</body>
-</html>
+    <div class="container">
+        <header>
+            <h1>SmartBimPeï</h1>
+            <div class="subtitle">The Ultimate Revit® Suite for Agile Pre-Synthesis & Model Quality Control.</div>
+            <div class="notice-box">
+                <p>🇫🇷 L'extension <strong>SmartBimPeï</strong> est en phase finale de R&D active et sera très prochainement disponible sur l'Autodesk® App Store pour les versions Revit 2024 à 2027.</p>
+                <p>🇬🇧 The <strong>SmartBimPeï</strong> suite is in its final active R&D phase and will soon be available on the Autodesk® App Store, supporting Revit versions 2024 to 2027.</p>
+            </div>
+        </header>
+        <section class="modules-section">
+            <h2>Five expert modules built for modern BIM workflows.</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>1. Clash Detection & Smart Openings</h3>
+                    <p>Advanced clash management with automated opening generation for RVT/IFC interoperability.</p>
+                    <p class="fr-text">Gestion avancée des interférences géométriques et génération automatique de réservations paramétriques.</p>
+                </div>
+                <div class="card">
+                    <h3>2. Model Cleaning & Duplicate Detector</h3>
+                    <p>Advanced tools to optimize model performance and instantly clean up redundant modeling data.</p>
+                    <p class="fr-text">Outils d'optimisation des performances de la maquette et nettoyage des éléments MEP modélisés en doublon.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Global Quantity Takeoff & Costing</h3>
+                    <p>Multi-model takeoff capabilities (RVT/IFC) combined with a customizable cost estimation system.</p>
+                    <p class="fr-text">Extraction rapide des quantitatifs multi-maquettes (RVT/IFC) et estimation financière intégrée.</p>
+                </div>
+                <div class="card">
+                    <h3>4. Financial & Decision Dashboard</h3>
+                    <p>Built-in reporting tools, real-time KPIs, and BCF exports for data-driven project steering.</p>
+                    <p class="fr-text">Indicateurs clés en temps réel, rapports de synthèse et exports au format standard BCF.</p>
+                </div>
+                <div class="card">
+                    <h3>5. BIM Data Audit & Compliance</h3>
+                    <p>Rigorous compliance auditing features to ensure data readiness for facility management and handover (As-Built / DOE).</p>
+                    <p class="fr-text">Moteur de contrôle qualité vérifiant la parfaite complétion des données métiers pour la livraison du DOE.</p>
+                </div>
+                <div class="card">
+                    <h3>6. Asynchronous Modeless Engine</h3>
+                    <p>Powered by an asynchronous framework (<code>IExternalEventHandler</code>) and modeless WPF windows to prevent Revit from freezing.</p>
+                    <p class="fr-text">Interface WPF non-bloquante et exécution des calculs géométriques complexes en arrière-plan.</p>
+                </div>
+            </div>
+        </section>
+        <section class="roadmap-section">
+            <div class="roadmap-content">
+                <h2>Our Roadmap: From Active R&D to Commercial Launch</h2>
+                <div class="roadmap-item">
+                    <strong>🔬 Beta Testing Phase (Current Status)</strong>
+                    <p>The plugin is currently undergoing private internal testing and active R&D. No commercial licenses or payment plans are active at this stage. We leverage Revit 2024 legacy environments to consolidate our core algorithms.</p>
+                </div>
+                <div class="roadmap-item">
+                    <strong>⚙️ Forward Compatibility Pipeline</strong>
+                    <p>Our ongoing development roadmap includes a robust multi-version assembly framework targeting full migration to .NET Core (.NET 8 / .NET 10) to support Revit 2025, 2026, and upcoming 2027 releases. Support from the Autodesk Developer Network (ADN) program is requested to secure this pipeline.</p>
+                </div>
+            </div>
+        </section>
+        <section class="manual-section">
+            <h2>📘 Manuel de Présentation & Utilisation : SmartBimPeï</h2>
+            <h3>🌟 Introduction : Pourquoi SmartBimPeï ?</h3>
+            <h4>À qui s'adresse cet outil ?</h4>
+            <p>Ce plugin a été pensé par et pour les BIM Managers, les Coordinateurs BIM, les Projeteurs (CVC, Plomberie, Elec, Archi) et les Chefs d'Entreprise.</p>
+            <h4>Quelle est sa mission principale ?</h4>
+            <p>Dans le monde du BIM, la détection des conflits (clashs) et leur résolution (création de réservations, communication) sont des processus chronophages qui coûtent extrêmement cher aux entreprises. SmartBimPeï supprime ces goulots d'étranglement grâce à :</p>
+            <ul>
+                <li><strong>L'automatisation intelligente :</strong> Oubliez la création manuelle de réservations un par un. Le plugin gère des fusions de réseaux complexes et des murs courbes.</li>
+                <li><strong>La communication standardisée :</strong> En utilisant les standards OpenBIM (BCF), vous facilitez la communication avec les équipes externes sur des plateformes comme BIMcollab ou BIM Track.</li>
+                <li><strong>La visibilité de gestion :</strong> Un tableau de bord décisionnel permet aux chefs d'entreprise d'évaluer la santé du projet en un coup d'œil.</li>
+            </ul>
+            <h3>⚙️ Module 1 : Smart Clash Detector (Le Moteur de Synthèse)</h3>
+            <p>Ce module est le cœur de SmartBimPeï. Il ne se contente pas de trouver des clashs ; il les comprend pour vous proposer des solutions concrètes.</p>
+            <h4>1.1 Le Panneau de Configuration (À gauche)</h4>
