@@ -40,7 +40,16 @@
         .btn { display: inline-block; background-color: var(--autodesk-blue); color: #FFFFFF; text-decoration: none; padding: 15px 35px; font-weight: 600; border-radius: 4px; margin-top: 20px; }
         .btn:hover { background-color: var(--autodesk-blue-hover); }
         .copyright { margin-top: 40px; font-size: 0.85rem; color: var(--text-muted); }
-    </style>
+    
+        /* Lightbox */
+        .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.85); text-align: center; }
+        .lightbox-content { margin: auto; display: block; max-width: 90%; max-height: 90vh; margin-top: 5vh; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); animation: zoom 0.3s; }
+        .close-lightbox { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .close-lightbox:hover { color: #bbb; }
+        .card img { cursor: pointer; transition: 0.3s; }
+        .card img:hover { opacity: 0.8; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        @keyframes zoom { from {transform:scale(0.9)} to {transform:scale(1)} }
+        </style>
 </head>
 <body>
     <div class="container">
@@ -48,11 +57,12 @@
         <!-- Hero Section -->
         <header>
             <h1>SmartBimPeï</h1>
-            <div class="subtitle">The Ultimate Revit® Suite for Agile Pre-Synthesis & Model Quality Control.</div>
-            <div style="font-size: 1.2rem; color: var(--text-muted); font-weight: 300; margin-top: -30px; margin-bottom: 40px; font-style: italic;">La suite Revit® ultime pour une pré-synthèse agile et le contrôle qualité des maquettes.</div>
+            <div class="subtitle">La suite Revit® ultime pour une pré-synthèse agile et le contrôle qualité des maquettes.</div>
+            <div style="font-size: 1.2rem; color: var(--text-muted); font-weight: 300; margin-top: -30px; margin-bottom: 40px; font-style: italic;">The Ultimate Revit® Suite for Agile Pre-Synthesis & Model Quality Control.</div>
             
             <div class="notice-box">
-                <p>🇫🇷 Mon extension <strong>SmartBimPeï</strong> est en phase finale de R&D active et sera très prochainement disponible sur l'Autodesk® App Store pour les versions Revit 2024 à 2027.</p>
+                <p>Gestion avancée des interférences géométriques et génération automatique de réservations paramétriques.</p>
+                    <p class="fr-text">🇫🇷 Mon extension <strong>SmartBimPeï</strong> est en phase finale de R&D active et sera très prochainement disponible sur l'Autodesk® App Store pour les versions Revit 2024 à 2027.</p>
                 <p>🇬🇧 The <strong>SmartBimPeï</strong> suite is in its final active R&D phase and will soon be available on the Autodesk® App Store, supporting Revit versions 2024 to 2027.</p>
             </div>
         </header>
@@ -64,61 +74,60 @@
 
         <!-- Modules Section Part 1 -->
         <section class="modules-section">
-            <h2>Five expert modules built for modern BIM workflows.</h2>
-            <h3 style="text-align: center; font-size: 1.2rem; font-weight: 300; color: var(--text-muted); font-style: italic;">Cinq modules experts conçus pour les flux de travail BIM modernes</h3>
+            <h2>Cinq modules experts conçus pour les flux de travail BIM modernes.</h2>
+            <h3 style="text-align: center; font-size: 1.2rem; font-weight: 300; color: var(--text-muted); font-style: italic;">Five expert modules built for modern BIM workflows</h3>
             
             <div class="grid">
                 
                 <!-- Card 1 -->
                 <div class="card">
-                    <h3>1. Clash Detection & Smart Openings</h3>
-                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Détection de Conflits & Réservations Intelligentes</h4>
+                    <h3>1. Détection de Conflits & Réservations Intelligentes</h3>
+                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Clash Detection & Smart Openings</h4>
 <img src="images/photo1.png" alt="Smart Clash Detector" style="width: 100%; border-radius: 6px; margin: 15px 0; border: 1px solid #ddd;">
                     <p>Advanced clash management with automated opening generation for RVT/IFC interoperability.</p>
-                    <p class="fr-text">Gestion avancée des interférences géométriques et génération automatique de réservations paramétriques.</p>
                 </div>
 
                 <!-- Card 2 -->
                 <div class="card">
-                    <h3>2. Model Cleaning & Duplicate Detector</h3>
-                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Nettoyage de Maquette & Détecteur de Doublons</h4>
+                    <h3>2. Nettoyage de Maquette & Détecteur de Doublons</h3>
+                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Model Cleaning & Duplicate Detector</h4>
 <img src="images/photo2.png" alt="Duplicate Detector" style="width: 100%; border-radius: 6px; margin: 15px 0; border: 1px solid #ddd;">
-                    <p>Advanced tools to optimize model performance and instantly clean up redundant modeling data.</p>
-                    <p class="fr-text">Outils d'optimisation des performances de la maquette et nettoyage des éléments MEP modélisés en doublon.</p>
+                    <p>Outils d'optimisation des performances de la maquette et nettoyage des éléments MEP modélisés en doublon.</p>
+                    <p class="fr-text">Advanced tools to optimize model performance and instantly clean up redundant modeling data.</p>
                 </div>
 
                 <!-- Card 3 -->
                 <div class="card">
-                    <h3>3. Global Quantity Takeoff & Costing</h3>
-                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Métré Global & Estimation Financière</h4>
+                    <h3>3. Métré Global & Estimation Financière</h3>
+                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Global Quantity Takeoff & Costing</h4>
 <img src="images/photo3.png" alt="Global Quantity Takeoff" style="width: 100%; border-radius: 6px; margin: 15px 0; border: 1px solid #ddd;">
-                    <p>Multi-model takeoff capabilities (RVT/IFC) combined with a customizable cost estimation system.</p>
-                    <p class="fr-text">Extraction rapide des quantitatifs multi-maquettes (RVT/IFC) et estimation financière intégrée.</p>
+                    <p>Extraction rapide des quantitatifs multi-maquettes (RVT/IFC) et estimation financière intégrée.</p>
+                    <p class="fr-text">Multi-model takeoff capabilities (RVT/IFC) combined with a customizable cost estimation system.</p>
                 </div>
  <!-- Card 4 -->
                 <div class="card">
-                    <h3>4. Financial & Decision Dashboard</h3>
-                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Tableau de Bord Financier & Décisionnel</h4>
+                    <h3>4. Tableau de Bord Financier & Décisionnel</h3>
+                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Financial & Decision Dashboard</h4>
 <img src="images/photo7.png" alt="Financial Dashboard" style="width: 100%; border-radius: 6px; margin: 15px 0; border: 1px solid #ddd;">
-                    <p>Built-in reporting tools, real-time KPIs, and BCF exports for data-driven project steering.</p>
-                    <p class="fr-text">Indicateurs clés en temps réel, rapports de synthèse et exports au format standard BCF.</p>
+                    <p>Indicateurs clés en temps réel, rapports de synthèse et exports au format standard BCF.</p>
+                    <p class="fr-text">Built-in reporting tools, real-time KPIs, and BCF exports for data-driven project steering.</p>
                 </div>
 
                 <!-- Card 5 -->
                 <div class="card">
-                    <h3>5. BIM Data Audit & Compliance</h3>
-                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Audit de Données BIM & Conformité</h4>
+                    <h3>5. Audit de Données BIM & Conformité</h3>
+                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">BIM Data Audit & Compliance</h4>
 <img src="images/photo9.png" alt="BIM Data Audit" style="width: 100%; border-radius: 6px; margin: 15px 0; border: 1px solid #ddd;">
-                    <p>Rigorous compliance auditing features to ensure data readiness for facility management and handover (As-Built / DOE).</p>
-                    <p class="fr-text">Moteur de contrôle qualité vérifiant la parfaite complétion des données métiers pour la livraison du DOE.</p>
+                    <p>Moteur de contrôle qualité vérifiant la parfaite complétion des données métiers pour la livraison du DOE.</p>
+                    <p class="fr-text">Rigorous compliance auditing features to ensure data readiness for facility management and handover (As-Built / DOE).</p>
                 </div>
 
                 <!-- Card 6 -->
                 <div class="card">
-                    <h3>6. Asynchronous Modeless Engine</h3>
-                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Moteur Asynchrone & Interface Non-Bloquante</h4>
-                    <p>Powered by an asynchronous framework (<code>IExternalEventHandler</code>) and modeless WPF windows to prevent Revit from freezing.</p>
-                    <p class="fr-text">Interface WPF non-bloquante et exécution des calculs géométriques complexes en arrière-plan.</p>
+                    <h3>6. Moteur Asynchrone & Interface Non-Bloquante</h3>
+                    <h4 style="font-size: 0.95rem; font-weight: 400; color: var(--text-muted); margin-bottom: 15px; font-style: italic;">Asynchronous Modeless Engine</h4>
+                    <p>Interface WPF non-bloquante et exécution des calculs géométriques complexes en arrière-plan.</p>
+                    <p class="fr-text">Powered by an asynchronous framework (<code>IExternalEventHandler</code>) and modeless WPF windows to prevent Revit from freezing.</p>
                 </div>
 
             </div>
@@ -127,28 +136,28 @@
         <!-- Roadmap Section -->
         <section class="roadmap-section">
             <div class="roadmap-content">
-                <h2>Our Roadmap: From Active R&D to Commercial Launch</h2>
-                <h3 style="text-align: center; font-size: 1.2rem; font-weight: 300; color: var(--text-muted); margin-bottom: 40px; font-style: italic;">Ma feuille de route : De la R&D active au lancement commercial</h3>
+                <h2>Ma feuille de route : De la R&D active au lancement commercial</h2>
+                <h3 style="text-align: center; font-size: 1.2rem; font-weight: 300; color: var(--text-muted); margin-bottom: 40px; font-style: italic;">Our Roadmap: From Active R&D to Commercial Launch</h3>
                 
                 <div class="roadmap-item">
-                    <strong>✅ Development & Stabilization Completed</strong>
-                    <p>Core development, advanced feature stabilization, and multi-version compatibility testing are officially finished. The SmartBimPeï suite natively supports Revit 2024, 2025, 2026, and 2027.</p>
-                    <p style="font-style: italic; color: var(--text-muted); font-size: 0.95rem; border-top: 1px dashed #E5E5E5; padding-top: 8px; margin-top: 8px;">Le développement, la stabilisation des fonctionnalités avancées et la compatibilité sont officiellement terminés et validés. La suite SmartBimPeï est nativement compatible avec Revit 2024, 2025, 2026 et 2027.</p>
+                    <strong>✅ Développement & Stabilisation Terminés</strong>
+                    <p>Le développement, la stabilisation des fonctionnalités avancées et la compatibilité sont officiellement terminés et validés. La suite SmartBimPeï est nativement compatible avec Revit 2024, 2025, 2026 et 2027.</p>
+                    <p style="font-style: italic; color: var(--text-muted); font-size: 0.95rem; border-top: 1px dashed #E5E5E5; padding-top: 8px; margin-top: 8px;">Core development, advanced feature stabilization, and multi-version compatibility testing are officially finished. The SmartBimPeï suite natively supports Revit 2024, 2025, 2026, and 2027.</p>
                 </div>
                 
                 <div class="roadmap-item" style="margin-top: 40px;">
-                    <strong>🚀 Ready for Deployment & Testing</strong>
-                    <p>The plugin is now fully ready for real-world testing phases and upcoming commercial deployment. Apply below for a 15-day free trial.</p>
-                    <p style="font-style: italic; color: var(--text-muted); font-size: 0.95rem; border-top: 1px dashed #E5E5E5; padding-top: 8px; margin-top: 8px;">Le plugin est désormais prêt pour les phases de test en conditions réelles et son déploiement commercial. Demandez votre essai gratuit de 15 jours ci-dessous.</p>
+                    <strong>🚀 Prêt pour le Déploiement et les Tests</strong>
+                    <p>Le plugin est désormais prêt pour les phases de test en conditions réelles et son déploiement commercial. Demandez votre essai gratuit de 15 jours ci-dessous.</p>
+                    <p style="font-style: italic; color: var(--text-muted); font-size: 0.95rem; border-top: 1px dashed #E5E5E5; padding-top: 8px; margin-top: 8px;">The plugin is now fully ready for real-world testing phases and upcoming commercial deployment. Apply below for a 15-day free trial.</p>
                 </div>
             </div>
         </section>
 
         <footer>
-            <h2>Ready to transform your BIM workflow?</h2>
-            <h3 style="font-size: 1.3rem; font-weight: 300; color: var(--text-muted); margin-bottom: 20px; font-style: italic;">Prêt à transformer vos processus BIM ?</h3>
-            <p>For early access requests, closed beta testing, or technical feedback, feel free to contact the developer.</p>
-            <p style="font-style: italic; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Pour les demandes d'accès anticipé, les tests en bêta fermée ou les retours techniques, n'hésitez pas à me contacter.</p>
+            <h2>Prêt à transformer vos processus BIM ?</h2>
+            <h3 style="font-size: 1.3rem; font-weight: 300; color: var(--text-muted); margin-bottom: 20px; font-style: italic;">Ready to transform your BIM workflow?</h3>
+            <p>Pour les demandes d'accès anticipé, les tests en bêta fermée ou les retours techniques, n'hésitez pas à me contacter.</p>
+            <p style="font-style: italic; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">For early access requests, closed beta testing, or technical feedback, feel free to contact the developer.</p>
             
             
             <div id="trial-form-container" style="max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: left; margin-bottom: 40px;">
@@ -202,5 +211,26 @@
         </footer>
 
     </div>
+
+    <!-- Lightbox Modal -->
+    <div id="imageLightbox" class="lightbox" onclick="this.style.display='none'">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('imageLightbox');
+            var modalImg = document.getElementById('lightboxImg');
+            var images = document.querySelectorAll('.card img');
+            images.forEach(function(img) {
+                img.onclick = function(e) {
+                    modal.style.display = 'block';
+                    modalImg.src = this.src;
+                    e.stopPropagation();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
