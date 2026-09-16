@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SmartBimPeï - Fiche Technique & Architecture</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 2rem; color: #333; }
+        h1, h2, h3 { color: #0056b3; }
+        h1 { border-bottom: 2px solid #0056b3; padding-bottom: 0.5rem; }
+        h2 { border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; margin-top: 2rem; }
+        blockquote { background: #f9f9f9; border-left: 5px solid #ccc; margin: 1.5em 10px; padding: 1em 10px; }
+        .alert { background: #e7f3fe; border-left: 6px solid #2196F3; padding: 15px; margin-bottom: 15px; }
+        .alert-important { background: #fff4e5; border-left: 6px solid #ff9800; }
+        ul, ol { margin-bottom: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+        strong { color: #000; }
+    </style>
+</head>
+<body>
+    <h1>SmartBimPeï - Fiche Technique & Architecture</h1>
+    <p><strong>SmartBimPeï</strong> (anciennement SmartClashDetector) est un plugin professionnel développé sur-mesure pour Autodesk Revit®. Initialement conçu pour révolutionner la synthèse géométrique (Clash Detection), le plugin a évolué en une suite complète de 5 modules distincts couvrant l'ensemble du spectre du BIM Management : Synthèse géométrique, Audit de la donnée (Data Quality), Nettoyage de maquette, Tableau de bord décisionnel, et Métré.</p>
+    
+    <div class="alert">
+        <strong>💡 Objectif Technique :</strong> Offrir une précision "chirurgicale" sur les géométries complexes (réseaux courbes, dalles), garantir une fluidité totale de Revit lors du traitement de milliers de données, et assurer un contrôle de conformité infaillible (GMAO / DOE).
+    </div>
+
+    <h2>1. Architecture Logicielle & Performances</h2>
+    <p>La création de SmartBimPeï a nécessité de résoudre de nombreux défis propres à l'API Revit :</p>
+    <ul>
+        <li><strong>Architecture Asynchrone (Thread-Safe)</strong> : Utilisation de threads séparés (Tâches asynchrones) pour les calculs géométriques et la vérification des paramètres. La communication vers l'interface WPF se fait via des <code>ExternalEvent</code> (<code>IExternalEventHandler</code>), empêchant ainsi tout "freezing" (gel) de Revit, même lors de l'analyse de milliers de clashs ou de propriétés.</li>
+        <li><strong>Stabilité & Sécurité (Anti-Crash)</strong> : Mise en place de <code>TransactionGroup</code> et de <code>RollBack</code> lors des visualisations. Les actions modifiant virtuellement la maquette (pour isoler un objet ou appliquer de la transparence) sont proprement gérées ou annulées en fin de script. La maquette n'est jamais modifiée accidentellement.</li>
+        <li><strong>Code Professionnel (MVVM)</strong> : Implémentation du pattern MVVM (Model-View-ViewModel) partiel et séparation stricte des <code>Views</code> (Fichiers <code>.xaml</code>), des <code>Models</code> (Données) et des <code>Handlers</code> (Logique métier de l'API Revit).</li>
+    </ul>
+
+    <h2>2. Module 1 : Smart Clash Detector (Synthèse Géométrique)</h2>
+    <p>Le cœur historique du plugin. Il remplace avantageusement le détecteur natif de Revit en apportant des options de filtrage avancées et une création automatisée de réservations.</p>
+    <h3>Fonctionnalités Techniques :</h3>
+    <ul>
+        <li><strong>Analyse Multicritères</strong> : Croisement entre une sélection A et B (Gaines, Canalisations, Chemins de Câbles, Murs, Dalles...).</li>
+        <li><strong>Calcul Géométrique Avancé (BoundingBoxes)</strong> : Détermination précise des <code>BoundingBoxes</code> complexes (incluant les modèles liés avec leurs transformations de coordonnées <code>Transform</code>) pour un ciblage parfait des conflits dans l'espace tridimensionnel.</li>
+        <li><strong>Tolérance Géométrique & Sliver Tolerance</strong> : Filtrage des micro-conflits (ex: le contact d'un isolant ou les tolérances chantier normales) selon un seuil millimétrique paramétrable.</li>
+        <li><strong>Auto-Réservation Intelligente</strong> : Insertion automatisée de familles de "vides" (Vides rectangulaires ou circulaires) à l'emplacement exact de l'intersection, avec gestion d'une "Marge de Réservation" paramétrable (ex: +50mm) pour anticiper l'isolation.</li>
+        <li><strong>Rendu Visuel "Chirurgical"</strong> : Basculement automatique de la vue 3D avec un gabarit transparent gris pour le contexte, et couleurs opaques à haut contraste pour les deux éléments en conflit.</li>
+    </ul>
+
+    <h2>3. Module 2 : BIM Health Dashboard (Tableau de Bord)</h2>
+    <p>Un outil décisionnel pour les chefs d'entreprise et directeurs de projets.</p>
+    <h3>Fonctionnalités Techniques :</h3>
+    <ul>
+        <li><strong>Score Global de Santé (KPI)</strong> : Algorithme lisant les résultats de l'ensemble des autres modules (clashs non résolus, doublons MEP, données non conformes) pour calculer un score sur 100 de la santé du modèle BIM.</li>
+        <li><strong>Indicateurs Financiers</strong> : Croisement des détections (doublons, quantités) avec une base de coûts estimative pour chiffrer l'impact financier des erreurs de modélisation.</li>
+        <li><strong>Rapport de Synthèse</strong> : Génération d'exports structurés (PDF, Excel) récapitulant les KPIs pour les revues de direction.</li>
+    </ul>
+
+    <h2>4. Module 3 : Duplicate Detector (Nettoyeur de Maquette)</h2>
+    <p>Un outil radical pour lutter contre les surcoûts matériels liés à la superposition d'éléments MEP (doubles commandes).</p>
+    <h3>Fonctionnalités Techniques :</h3>
+    <ul>
+        <li><strong>Vérification de Superposition Stricte</strong> : L'algorithme ne se contente pas de trouver des intersections partielles, il vérifie si deux éléments partagent exactement la même géométrie (même courbe centrale, mêmes sommets) et les mêmes dimensions.</li>
+        <li><strong>Purge Automatisée</strong> : Suppression en un clic des éléments redondants identifiés, avec rafraîchissement dynamique de la liste.</li>
+    </ul>
+
+    <h2>5. Module 4 : BIM Data Audit & Compliance (Contrôle Qualité)</h2>
+    <p>Dernière grande évolution majeure de SmartBimPeï, ce module est le "gendarme de la donnée". Il assure la validité de la maquette pour les phases d'Exploitation-Maintenance (Facility Management / GMAO) et de Dossier d'Ouvrage Exécuté (DOE).</p>
+
+    <div class="alert alert-important">
+        <strong>⚠️ Innovation "Cerveau Central" (Anti-Faux Positif)</strong><br>
+        L'algorithme de vérification (<code>HasValidParameter</code>) a été conçu pour reproduire l'intelligence d'un BIM Manager humain. Lorsqu'il cherche un paramètre (ex: <em>Résistance au Feu</em> ou <em>Matériau Structurel</em>), <strong>il inspecte d'abord l'occurrence (Instance)</strong>. S'il ne le trouve pas ou s'il est vide, <strong>il va chercher automatiquement cette même information dans les propriétés du Type (<code>ElementType</code>)</strong>. Cela garantit l'absence de faux positifs et évite les crashs de requêtes nulles.
+    </div>
+
+    <h3>Contrôles par Corps d'État (Disciplines) :</h3>
+    <ol>
+        <li><strong>Architecture (Second-Œuvre)</strong> <em>(Portes, Fenêtres, Plafonds, Murs)</em>
+            <ul>
+                <li>Vérification du paramètre natif <strong>Identifiant (Marque)</strong> pour tous.</li>
+                <li>Vérification de la <strong>Résistance au Feu</strong> (Compartimentage) sur les Murs et Portes.</li>
+                <li>Vérification du <strong>Fabricant</strong> et du <strong>Modèle</strong> pour les Portes, Fenêtres et Plafonds (GMAO).</li>
+            </ul>
+        </li>
+        <li><strong>Structure (Gros-Œuvre)</strong> <em>(Murs, Dalles, Poutres, Poteaux)</em>
+            <ul>
+                <li>Vérification de l'<strong>Identifiant (Marque)</strong>.</li>
+                <li>Vérification du <strong>Matériau Structurel</strong> (Crucial pour le bilan carbone et les calculs de charge).</li>
+                <li>Vérification de la <strong>Résistance au Feu</strong> (Réglementation).</li>
+            </ul>
+        </li>
+        <li><strong>CVC (Gaines & Équipements)</strong>
+            <ul>
+                <li>Vérification <strong>Système de Gaine</strong> (Classification d'Air).</li>
+                <li>Vérification <strong>Fabricant</strong> et <strong>Modèle</strong> sur les équipements (CTA, Terminaux).</li>
+                <li><strong>Localisation Spatiale</strong> (Pièce / Espace) obligatoire pour les terminaux afin de certifier les rapports COBie.</li>
+            </ul>
+        </li>
+        <li><strong>Plomberie (Canalisations & Équipements)</strong>
+            <ul>
+                <li>Vérification du <strong>Système de Canalisation</strong> (ex: EU, EV, ECS).</li>
+                <li>Vérification de la mention <em>Par défaut</em> dans le paramètre Famille & Type.</li>
+                <li>Vérification <strong>Fabricant</strong>, <strong>Modèle</strong> et <strong>Localisation Spatiale</strong> (Pièce/Espace) pour les équipements et sanitaires.</li>
+            </ul>
+        </li>
+        <li><strong>Électricité (CFO/CFA & Chemins)</strong>
+            <ul>
+                <li>Vérification <strong>Panneau/Tableau</strong> d'alimentation (pour les luminaires et équipements).</li>
+                <li>Vérification de l'<strong>Identifiant (Marque)</strong> des TGBT et équipements CFA (SSI, VDI).</li>
+                <li>Vérification <strong>Fabricant</strong>, <strong>Modèle</strong> et <strong>Localisation Spatiale</strong> stricte.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h2>6. Module 5 : Métré Express (Quantities & Pricing)</h2>
+    <p>Un pont direct entre la géométrie 3D et l'économie de la construction.</p>
+    <h3>Fonctionnalités Techniques :</h3>
+    <ul>
+        <li><strong>Extraction Paramétrique</strong> : Récupération des valeurs géométriques réelles (Longueur, Surface, Volume, Diamètre) dynamiquement depuis l'API, indépendamment des nomenclatures natives de Revit.</li>
+        <li><strong>Valorisation Financière</strong> : Croisement des quantitatifs extraits avec une bibliothèque de prix unitaire intégrée pour obtenir une estimation totale instantanée.</li>
+        <li><strong>Interopérabilité</strong> : Fonction d'import/export robuste (format CSV/Excel) pour l'échange de données avec des logiciels d'économie de la construction tiers.</li>
+    </ul>
+
+    <hr>
+    <p><em>Ce document certifie les capacités techniques de pointe de la suite SmartBimPeï, démontrant une maîtrise experte de l'API Revit (C#), du développement d'interfaces (WPF) et des enjeux complexes de la coordination OpenBIM et du Facility Management.</em></p>
+</body>
+</html>

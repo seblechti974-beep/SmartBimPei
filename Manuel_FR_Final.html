@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Manuel SmartBimPeï</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+        h1, h2, h3 {
+            color: #1e3a8a; /* Bleu foncé pro */
+        }
+        h1 {
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+            font-size: 24pt;
+        }
+        h2 {
+            margin-top: 30px;
+            font-size: 18pt;
+            border-left: 4px solid #3b82f6;
+            padding-left: 10px;
+        }
+        h3 {
+            font-size: 14pt;
+            color: #2563eb;
+        }
+        p, ul {
+            font-size: 11pt;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        blockquote {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .highlight {
+            font-weight: 600;
+            color: #0f172a;
+        }
+        
+        /* Spécifique à l'impression (PDF) */
+        @media print {
+            body { background: white; }
+            .page { 
+                margin: 0; 
+                box-shadow: none; 
+                width: auto; 
+                min-height: auto;
+                padding: 0;
+            }
+            h2 { page-break-after: avoid; }
+            img { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>📑 Suite SmartBimPeï — Documentation Technique & Manuel Utilisateur</h1>
+        <p class="highlight">Suite avancée d'extensions Revit® pour la Pré-Synthèse et le Contrôle Qualité BIM</p>
+        
+        <h2>🌟 Introduction & Valeur Ajoutée</h2>
+        
+        <h3>À qui s'adresse cet outil ?</h3>
+        <p>Ce plugin a été pensé par et pour les <strong>BIM Managers</strong>, les <strong>Coordinateurs BIM</strong>, les <strong>Projeteurs</strong> (CVC, Plomberie, Elec, Archi) et les <strong>Chefs d'Entreprise</strong>.</p>
+        
+        <h3>Quelle est ma mission principale ?</h3>
+        <p>Dans le monde du BIM, la détection des conflits (clashs) et leur résolution (création de réservations, communication) sont des processus chronophages qui coûtent extrêmement cher aux entreprises. SmartBimPeï supprime ces goulots d'étranglement grâce à :</p>
+        <ul>
+            <li><strong>L'automatisation intelligente</strong> : Oubliez la création manuelle de réservations un par un. Mon plugin gère des fusions de réseaux complexes et des murs courbes.</li>
+            <li><strong>La communication standardisée</strong> : En utilisant les standards OpenBIM (BCF), je facilite la communication avec les équipes externes sur des plateformes comme BIMcollab ou BIM Track.</li>
+            <li><strong>La visibilité de gestion</strong> : Un tableau de bord décisionnel permet aux chefs d'entreprise d'évaluer la santé du projet en un coup d'œil.</li>
+        </ul>
+
+        <h2>⚙️ Module 1: Smart Clash Detector (Moteur de Synthèse Géométrique)</h2>
+        <p>Ce module est le cœur de SmartBimPeï. Il ne se contente pas de trouver des clashs ; il les comprend pour vous proposer des solutions concrètes.</p>
+        
+        <img src="images/photo1.png" alt="Interface Principale">
+
+        <h3>1.1 Le Panneau de Configuration (À gauche)</h3>
+        <p>Ce panneau vous permet de paramétrer votre recherche de façon chirurgicale.</p>
+        <ul>
+            <li><strong>Sélection Modèle A & Modèle B</strong> : <br>⚙️ <em>Utilisation</em> : Choisissez les modèles à croiser. <br>💎 <em>Plus-value</em> : Évite d'analyser toute la maquette inutilement.</li>
+            <li><strong>Tolérance (mm)</strong> : <br>⚙️ <em>Utilisation</em> : Définissez la distance de pénétration acceptable. <br>💎 <em>Plus-value</em> : Évite les "faux positifs".</li>
+            <li><strong>Filtres "Taille min."</strong> : <br>⚙️ <em>Utilisation</em> : Saisissez une dimension minimale sous laquelle l'élément est ignoré. <br>💎 <em>Plus-value</em> : Temps de calcul drastiquement réduit.</li>
+            <li><strong>Marge Auto-Réservation</strong> : <br>⚙️ <em>Utilisation</em> : Indique le débord (ex: 50mm) ajouté autour de la gaine. <br>💎 <em>Plus-value</em> : Anticipe l'isolation.</li>
+        </ul>
+
+        <h3>1.2 Le Tableau de Synthèse (Au centre)</h3>
+        <ul>
+            <li><strong>Le Regroupement Intelligent (Smart Grouping)</strong> : <br>⚙️ <em>Ce que ça fait</em> : Regroupe les clashs proches en un seul ID. <br>💎 <em>Plus-value</em> : Réduit la fatigue visuelle.</li>
+            <li><strong>La Colonne "Dimension Resa"</strong> : <br>⚙️ <em>Ce que ça fait</em> : Affiche en direct les dimensions finales du trou. <br>💎 <em>Plus-value</em> : Impact architectural visible immédiatement.</li>
+        </ul>
+
+        <h3>1.3 Les Actions de Résolution (En bas)</h3>
+        <p><strong>Bouton 👁️ "Isoler Clash" :</strong></p>
+        <ul>
+            <li>⚙️ <em>Utilisation</em> : Ouvre une vue 3D centrée.</li>
+            <li>💎 <em>Plus-value</em> : Charte graphique transparente et grise, compréhension instantanée.</li>
+        </ul>
+        <img src="images/photo4.png" alt="Isolation 3D">
+
+        <p><strong>Bouton 🕳️ "Générer Auto-Réservation(s)" :</strong></p>
+        <ul>
+            <li>⚙️ <em>Utilisation</em> : En un clic, place des familles de "vides".</li>
+            <li>💎 <em>Plus-value</em> : Gère la Sliver Tolerance. Ce qui prenait 10 minutes prend 1 milliseconde.</li>
+        </ul>
+        <img src="C:/Users/pc/Desktop/SmartBimPei/images/photo8.png" alt="Auto-Réservation">
+
+        <h3>1.4 Les Exports & Rapports (La Communication)</h3>
+        <p><strong>Export BCF (BIM Collaboration Format) :</strong></p>
+        <ul>
+            <li>⚙️ <em>Utilisation</em> : Génère un fichier .bcfzip (caméras, statuts, commentaires).</li>
+            <li>💎 <em>Plus-value</em> : Fini les échanges d'emails interminables.</li>
+        </ul>
+        <img src="images/photo5.png" alt="Export BCF">
+
+        <p><strong>Export PDF & CSV :</strong></p>
+        <ul>
+            <li>⚙️ <em>Utilisation</em> : Exporte un rapport visuel ou Excel.</li>
+            <li>💎 <em>Plus-value</em> : Parfait pour les réunions de synthèse.</li>
+        </ul>
+        <img src="images/photo6.png" alt="Rapport PDF">
+
+                <div style="background-color: #e8f4f8; border-left: 5px solid #0078D7; padding: 20px; margin: 30px 0; border-radius: 4px; page-break-inside: avoid;">
+            <h3 style="margin-top:0; color: #005A9E; font-size: 1.3em;">&#128161; ASTUCE PRO : Visualiser le contexte du bâtiment</h3>
+            <p>Lorsque SmartBimPeï génère une vue d'isolement (<em>REVIT_CLASH_ISOLATION_VIEW</em>), seuls les éléments concernés sont visibles. Pour comprendre exactement où vous vous trouvez dans la maquette, cliquez sur l'icône <strong>"Lunettes"</strong> en bas de l'écran et sélectionnez <strong>"Restaurer le masquage/l'isolement temporaire"</strong>. Le reste du bâtiment réapparaîtra instantanément autour de votre collision !</p>
+            <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+                <img src="images/protip1.png" style="width: 48%; border: 1px solid #ccc; border-radius: 4px;" alt="Avant (Isolé)">
+                <img src="images/protip2.png" style="width: 48%; border: 1px solid #ccc; border-radius: 4px;" alt="Après (Restauré)">
+            </div>
+        </div>
+
+<h2>📈 Module 2: BIM Health Dashboard (Tableau de Bord de Pilotage)</h2>
+        <img src="images/photo7.png" alt="Dashboard">
+        <p>🎯 <strong>Le coup d'œil de la direction</strong> : Le Dashboard est la tour de contrôle de votre projet.</p>
+        <ul>
+            <li>⚙️ <em>Utilisation</em> : Analyser les indicateurs clés (clashs, doublons, coûts).</li>
+            <li>💎 <em>Plus-value</em> : Outil ultime de valorisation du travail accompli.</li>
+        </ul>
+
+        <h2>🧹 Module 3: Duplicate Detector (Nettoyeur de Maquette)</h2>
+        <img src="images/photo2.png" alt="Duplicate Detector">
+        <ul>
+            <li>⚙️ <em>Utilisation</em> : Lance une analyse pour trouver les éléments MEP superposés.</li>
+            <li>💎 <em>Plus-value</em> : Empêche des erreurs financières majeures (doubles commandes).</li>
+        </ul>
+
+        <h2>🛡️ Module 4: BIM Data Audit & Compliance (Contrôle Qualité & Handover)</h2>
+        <img src="C:/Users/pc/Desktop/SmartBimPei/images/photo9.png" alt="BIM Data Audit">
+        <ul>
+            <li>⚙️ <em>Utilisation</em> : Scanne intelligemment les paramètres pour vérifier le DOE numérique.</li>
+            <li>💎 <em>Plus-value</em> : Traduit les données manquantes en impacts réels sur la maintenance.</li>
+        </ul>
+
+        <h2>💰 Module 5: Métré Express (Quantities & Pricing)</h2>
+        <img src="images/photo3.png" alt="Métré Express">
+        <ul>
+            <li>⚙️ <em>Utilisation</em> : Extrait les quantitatifs géométriques et croise avec votre bibliothèque de prix.</li>
+            <li>💎 <em>Plus-value</em> : Gain de temps colossal pour les économistes.</li>
+        </ul>
+
+        <blockquote>
+            Ce manuel est conçu pour accompagner la montée en compétence des équipes. <strong>SmartBimPeï</strong> n'est pas qu'un simple outil, c'est un atout concurrentiel majeur pour vos processus BIM.
+        </blockquote>
+    </div>
+<style>
+    .part2-container { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    .part2-container p, .part2-container li, .part2-container td, .part2-container th { font-size: 11px !important; line-height: 1.4 !important; }
+    .part2-container h2 { font-size: 16px !important; margin-top: 15px !important; margin-bottom: 5px !important; padding-bottom: 2px !important; }
+    .part2-container h3 { font-size: 13px !important; margin-top: 10px !important; margin-bottom: 5px !important; }
+    .part2-container table { margin-top: 5px !important; margin-bottom: 10px !important; }
+    .part2-container th, .part2-container td { padding: 6px 8px !important; }
+    .part2-container .important-box { padding: 10px !important; margin: 10px 0 !important; }
+</style>
+<div style='page-break-before: always;'></div>
+<div class='part2-container'>
+
+    <h1 style="text-align:center; font-size: 1.8em; margin-top: 40px; color: #2c3e50; border-bottom: none;">Partie 2 : Guide Détaillé de l'Interface</h1>
+    <p style="text-align: center; font-size: 1.1rem; color: #666;">Ce document détaille l'utilisation des différents modules de la suite SmartBimPeï.</p>
+
+    <h2>1. Détection de Conflits (Clash Detector)</h2>
+    <p>Ce module est le cœur de SmartBimPeï. Il permet d'analyser deux modèles (ou un modèle contre lui-même) pour détecter les intersections physiques (clashs) entre les éléments.</p>
+    
+    <h3>1.1 Configuration de l'analyse</h3>
+    <table>
+        <tr>
+            <th>Élément</th>
+            <th>Description et Fonctionnement</th>
+        </tr>
+        <tr>
+            <td><strong>Modèle A / Modèle B</strong></td>
+            <td>Sélectionnez le fichier cible (maquette courante ou lien Revit) pour chaque modèle. C'est entre ces deux modèles que la détection sera lancée.</td>
+        </tr>
+        <tr>
+            <td><strong>Catégories d'éléments</strong></td>
+            <td>Cochez les catégories Revit à analyser pour chaque modèle (ex: Murs, Dalles, Gaines de ventilation, Canalisations).</td>
+        </tr>
+        <tr>
+            <td><strong>Niveau (Filtre)</strong></td>
+            <td>Permet de restreindre l'analyse à un ou plusieurs niveaux spécifiques du bâtiment pour cibler les résultats.</td>
+        </tr>
+        <tr>
+            <td><strong>Tolérance (mm)</strong></td>
+            <td>Marge de chevauchement tolérée. Si deux objets se touchent sur une profondeur inférieure à cette tolérance, le clash est ignoré.</td>
+        </tr>
+        <tr>
+            <td><strong>Taille min. (Modèle A & B)</strong></td>
+            <td>Exclut de l'analyse les éléments trop petits (ex: ignorer les tuyaux d'un diamètre inférieur à 90mm).</td>
+        </tr>
+        <tr>
+            <td><strong>Marge Auto-Réservation</strong></td>
+            <td>Ajoute une marge de sécurité (en mm) autour du clash lors de la création d'une boîte de réservation.</td>
+        </tr>
+        <tr>
+            <td><strong>Filtre par Paramètre</strong></td>
+            <td>Permet de cibler précisément certains éléments (Nom du paramètre exact et Valeur attendue).</td>
+        </tr>
+        <tr>
+            <td><strong>Filtre d'orientation des réseaux</strong></td>
+            <td>(Optionnel) Ciblez uniquement les réseaux Horizontaux ou Verticaux dans la détection.</td>
+        </tr>
+        <tr>
+            <td><strong>Bouton : Détecter</strong></td>
+            <td>Démarre le scan de détection. Les résultats s'afficheront dans la grille à droite.</td>
+        </tr>
+    </table>
+
+    <h3>1.2 Exports et Mode de Rendu</h3>
+    <table>
+        <tr>
+            <th>Élément</th>
+            <th>Description et Fonctionnement</th>
+        </tr>
+        <tr>
+            <td><strong>Sauver XML / Charger XML</strong></td>
+            <td>Permet de sauvegarder l'état actuel de votre détection (avec les conflits résolus/actifs) et de recharger une session précédente.</td>
+        </tr>
+        <tr>
+            <td><strong>Export BCF / Import BCF</strong></td>
+            <td>Format d'échange standard (BIM Collaboration Format) pour envoyer les clashs vers des logiciels tiers de synthèse (Navisworks, BIMcollab, etc.).</td>
+        </tr>
+        <tr>
+            <td><strong>Mode de Rendu (PDF/BCF)</strong></td>
+            <td>Définit comment le logiciel doit interpréter le clash pour la réservation :<br>
+                - <strong>Automatique</strong> : Déduit l'action selon la nature de la maquette hôte.<br>
+                - <strong>Forcer Mode Structure</strong> : Pour voir/générer les percements (trous réels).<br>
+                - <strong>Forcer Mode Synthèse/MEP</strong> : Pour voir/générer les demandes (boîtes oranges).
+            </td>
+        </tr>
+    </table>
+
+    <div class="important-box">
+        <strong>⚠️ Flux de données et Partage (Fichier XML)</strong><br>
+        À chaque détection, SmartBimPeï sauvegarde vos résultats dans un fichier <strong>.xml</strong> généré automatiquement dans le même dossier que votre fichier Revit (<code>.rvt</code>). <br>
+        Pour partager votre analyse avec d'autres intervenants (ex: BET Structure), <strong>envoyez-leur toujours la maquette <code>.rvt</code> ET le fichier <code>.xml</code> dans le même dossier</strong>. Ils verront ainsi tout l'historique des conflits directement dans leur interface !
+    </div>
+
+    <h2>2. Audit Qualité des Données (Data & DOE)</h2>
+    <p>Ce module vérifie de manière automatisée si les éléments de votre maquette sont correctement renseignés selon des règles prédéfinies.</p>
+    <table>
+        <tr>
+            <th>Élément</th>
+            <th>Description et Fonctionnement</th>
+        </tr>
+        <tr>
+            <td><strong>Sélectionner le Corps d'état</strong></td>
+            <td>Choisissez la discipline à inspecter (ex: Architecture (Second Œuvre)). Les règles de validation liées à ce corps d'état sont chargées automatiquement en arrière-plan.</td>
+        </tr>
+        <tr>
+            <td><strong>Bouton bleu : Lancer l'audit des données</strong></td>
+            <td>Scanne l'ensemble du projet. S'il trouve des éléments non conformes (paramètres manquants ou erronés), il les listera dans le "Rapport de non-conformité" à droite.</td>
+        </tr>
+        <tr>
+            <td><strong>Bouton vert : Résoudre automatiquement</strong></td>
+            <td>Applique une correction automatique en lot sur les éléments non conformes détectés, lorsque la règle le permet.</td>
+        </tr>
+    </table>
+
+    <h2>3. Détecteur de Doublons</h2>
+    <p>Ce module scanne la maquette pour identifier rapidement les éléments superposés (modélisés deux fois au même endroit).</p>
+    <table>
+        <tr>
+            <th>Élément</th>
+            <th>Description et Fonctionnement</th>
+        </tr>
+        <tr>
+            <td><strong>Catégories à scanner</strong></td>
+            <td>Cochez les catégories d'objets où vous suspectez des doublons (ex: Murs, Appareils sanitaires, etc.). Très utile pour vérifier les imports ou les erreurs de copier-coller.</td>
+        </tr>
+        <tr>
+            <td><strong>Bouton bleu : Détecter les doublons</strong></td>
+            <td>Analyse les catégories sélectionnées et affiche la liste des éléments parfaitement superposés dans le tableau des résultats (avec leur ID et leur localisation).</td>
+        </tr>
+        <tr>
+            <td><strong>Bouton rouge : Supprimer les copies</strong></td>
+            <td>Supprime automatiquement l'un des deux éléments en doublon pour nettoyer votre maquette. <br>
+            <strong>Note importante :</strong> Ce bouton ne supprimera que les doublons présents dans votre maquette hôte. Si le doublon provient d'une maquette liée (IFC ou RVT), il sera ignoré car Revit interdit la modification des liens (lecture seule).</td>
+        </tr>
+    </table>
+
+    <h2>4. Extraction des Quantités (Métré Global)</h2>
+    <p>Ce module génère des quantitatifs précis (longueurs, surfaces, volumes) de votre maquette pour préparer vos devis et chiffrages.</p>
+    <table>
+        <tr>
+            <th>Élément</th>
+            <th>Description et Fonctionnement</th>
+        </tr>
+        <tr>
+            <td><strong>Filtres (Maquette, Niveau, Catégorie)</strong></td>
+            <td>Ces menus déroulants situés en haut s'activent après l'extraction. Ils vous permettent de filtrer rapidement l'affichage du tableau (ex: n'afficher que le Niveau 1).</td>
+        </tr>
+        <tr>
+            <td><strong>Bouton rouge : Lancer l'Extraction</strong></td>
+            <td>Scanne l'intégralité de la maquette (et de ses liens) pour en extraire la liste complète des éléments avec leurs quantités physiques réelles.</td>
+        </tr>
+        <tr>
+            <td><strong>Boutons bleus : Isoler / Rétablir</strong></td>
+            <td>Sélectionnez une ligne dans le tableau et cliquez sur 'Isoler' pour afficher uniquement cet objet en 3D dans Revit. 'Rétablir' annule cet isolement.</td>
+        </tr>
+        <tr>
+            <td><strong>Bouton vert : Exporter Devis (.xlsx)</strong></td>
+            <td>Génère un fichier Excel parfaitement formaté contenant toutes les données de votre tableau, idéal pour un chiffrage.</td>
+        </tr>
+        <tr>
+            <td><strong>Boutons Importer/Exporter (.sbp)</strong></td>
+            <td>Permet de sauvegarder votre tableau actuel (et surtout vos prix unitaires saisis) dans un fichier propriétaire .sbp pour le recharger plus tard.</td>
+        </tr>
+        <tr>
+            <td><strong>Montant Total Estimé</strong></td>
+            <td>Se met à jour dynamiquement en bas à droite en fonction des prix unitaires que vous avez renseignés dans le tableau.</td>
+        </tr>
+    </table>
+
+    <h2>5. Dashboard (Tableau de bord Global)</h2>
+    <p>Le centre de contrôle qui supervise l'état de santé de vos projets et l'avancement de vos synthèses BIM.</p>
+    <table>
+        <tr>
+            <th>Élément</th>
+            <th>Description et Fonctionnement</th>
+        </tr>
+        <tr>
+            <td><strong>Graphiques d'avancement</strong></td>
+            <td>Affiche visuellement le ratio de clashs "Résolus" vs "Actifs" en lisant les données de votre fichier XML.</td>
+        </tr>
+        <tr>
+            <td><strong>Indicateur de Santé (Score)</strong></td>
+            <td>Note globale attribuée à votre maquette en fonction de la qualité des données (paramètres) et de la présence de doublons.</td>
+        </tr>
+        <tr>
+            <td><strong>Bouton : Rafraîchir les données</strong></td>
+            <td>Force la relecture du fichier XML et de la maquette pour mettre à jour tous vos graphiques en temps réel.</td>
+        </tr>
+    </table>
+
+
+</div>
+</body>
+</html>

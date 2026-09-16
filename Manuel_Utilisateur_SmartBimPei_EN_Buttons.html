@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manual - SmartBimPeï</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 30px; background-color: #f9f9fa; }
+        h1 { color: #005A9E; border-bottom: 2px solid #005A9E; padding-bottom: 10px; text-align: center; }
+        h2 { color: #2c3e50; margin-top: 40px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        h3 { color: #0078D7; margin-top: 25px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 30px; background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        th, td { padding: 12px 15px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #f1f8ff; color: #005A9E; font-weight: 600; width: 35%; }
+        td { color: #444; }
+        .important-box { background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 4px; color: #856404; }
+        strong { color: #222; }
+    </style>
+</head>
+<body>
+
+    <h1>User Manual - SmartBimPeï</h1>
+    <p style="text-align: center; font-size: 1.1rem; color: #666;">This document details the use of the different modules in the SmartBimPeï suite.</p>
+
+    <h2>1. Clash Detection (Clash Detector)</h2>
+    <p>This module is the core of SmartBimPeï. It allows you to analyze two models (or a model against itself) to detect physical intersections (clashes) between elements.</p>
+    
+    <h3>1.1 Analysis Configuration</h3>
+    <table>
+        <tr>
+            <th>Element</th>
+            <th>Description and Operation</th>
+        </tr>
+        <tr>
+            <td><strong>Model A / Model B</strong></td>
+            <td>Select the target file (Host Model or Linked Model) for each model. The detection will be run between these two models.</td>
+        </tr>
+        <tr>
+            <td><strong>Element Categories</strong></td>
+            <td>Check the Revit categories to analyze for each model (e.g., Walls, Floors, Ducts, Pipes).</td>
+        </tr>
+        <tr>
+            <td><strong>Level (Filter)</strong></td>
+            <td>Allows restricting the analysis to one or more specific levels of the building to target results.</td>
+        </tr>
+        <tr>
+            <td><strong>Sliver Tolerance (mm)</strong></td>
+            <td>Overlap margin tolerated. If two objects touch over a depth less than this tolerance, the clash is ignored.</td>
+        </tr>
+        <tr>
+            <td><strong>Min. Size (Model A & B)</strong></td>
+            <td>Excludes elements that are too small from the analysis (e.g., ignore pipes with a diameter less than 90mm).</td>
+        </tr>
+        <tr>
+            <td><strong>Auto-Provision Margin</strong></td>
+            <td>Adds a safety margin (in mm) around the clash when creating a provision for void box.</td>
+        </tr>
+        <tr>
+            <td><strong>Parameter Filter</strong></td>
+            <td>Allows precisely targeting certain elements (Exact Parameter Name and Expected Value).</td>
+        </tr>
+        <tr>
+            <td><strong>Network Orientation Filter</strong></td>
+            <td>(Optional) Target only Horizontal or Vertical networks in the detection.</td>
+        </tr>
+        <tr>
+            <td><strong>Button: Detect</strong></td>
+            <td>Starts the detection scan. The results will be displayed in the grid on the right.</td>
+        </tr>
+    </table>
+
+    <h3>1.2 Exports and Render Mode</h3>
+    <table>
+        <tr>
+            <th>Element</th>
+            <th>Description and Operation</th>
+        </tr>
+        <tr>
+            <td><strong>Save XML / Load XML</strong></td>
+            <td>Allows saving the current state of your detection (with resolved/active clashes) and reloading a previous session.</td>
+        </tr>
+        <tr>
+            <td><strong>Export BCF / Import BCF</strong></td>
+            <td>Standard exchange format (BIM Collaboration Format) to send clashes to third-party coordination software (Navisworks, BIMcollab, etc.).</td>
+        </tr>
+        <tr>
+            <td><strong>Render Mode (PDF/BCF)</strong></td>
+            <td>Defines how the software should interpret the clash for the provision for void:<br>
+                - <strong>Automatic</strong>: Deduces the action according to the nature of the Host Model.<br>
+                - <strong>Force Structure Mode</strong>: To see/generate the penetrations (actual holes).<br>
+                - <strong>Force MEP/Coordination Mode</strong>: To see/generate the requests (orange boxes).
+            </td>
+        </tr>
+    </table>
+
+    <div class="important-box">
+        <strong>⚠️ Data Flow and Sharing (XML File)</strong><br>
+        At each detection, SmartBimPeï saves your results in an <strong>.xml</strong> file generated automatically in the same folder as your Revit file (<code>.rvt</code>). <br>
+        To share your analysis with other stakeholders (e.g., Structural Engineer), <strong>always send them the <code>.rvt</code> model AND the <code>.xml</code> file in the same folder</strong>. They will then see the entire clash history directly in their interface!
+    </div>
+
+    <h2>2. Data Quality Audit (Data & As-Built)</h2>
+    <p>This module automatically checks if the elements of your model are properly populated according to predefined rules.</p>
+    <table>
+        <tr>
+            <th>Element</th>
+            <th>Description and Operation</th>
+        </tr>
+        <tr>
+            <td><strong>Select Discipline</strong></td>
+            <td>Choose the discipline to inspect (e.g., Architecture (Interior Finishes)). The validation rules linked to this discipline are automatically loaded in the background.</td>
+        </tr>
+        <tr>
+            <td><strong>Blue button: Run data audit</strong></td>
+            <td>Scans the entire project. If it finds non-compliant elements (missing or incorrect parameters), it will list them in the "Non-compliance report" on the right.</td>
+        </tr>
+        <tr>
+            <td><strong>Green button: Auto-resolve</strong></td>
+            <td>Applies a batch automatic correction on the detected non-compliant elements, when the rule allows it.</td>
+        </tr>
+    </table>
+
+    <h2>3. Duplicate Detector</h2>
+    <p>This module scans the model to quickly identify overlapping elements (modeled twice in the same place).</p>
+    <table>
+        <tr>
+            <th>Element</th>
+            <th>Description and Operation</th>
+        </tr>
+        <tr>
+            <td><strong>Categories to scan</strong></td>
+            <td>Check the object categories where you suspect duplicates (e.g., Walls, Plumbing fixtures, etc.). Very useful for checking imports or copy-paste errors.</td>
+        </tr>
+        <tr>
+            <td><strong>Blue button: Detect duplicates</strong></td>
+            <td>Analyzes the selected categories and displays the list of perfectly overlapping elements in the results table (with their ID and location).</td>
+        </tr>
+        <tr>
+            <td><strong>Red button: Delete copies</strong></td>
+            <td>Automatically deletes one of the two duplicate elements to clean up your model. <br>
+            <strong>Important note:</strong> This button will only delete duplicates present in your Host Model. If the duplicate comes from a Linked Model (IFC or RVT), it will be ignored because Revit prohibits modifying links (read-only).</td>
+        </tr>
+    </table>
+
+    <h2>4. Quantity Extraction (Global Takeoff)</h2>
+    <p>This module generates precise quantities (lengths, areas, volumes) from your model to prepare your estimates and costing.</p>
+    <table>
+        <tr>
+            <th>Element</th>
+            <th>Description and Operation</th>
+        </tr>
+        <tr>
+            <td><strong>Filters (Model, Level, Category)</strong></td>
+            <td>These drop-down menus at the top become active after extraction. They allow you to quickly filter the table display (e.g., only show Level 1).</td>
+        </tr>
+        <tr>
+            <td><strong>Red button: Run Extraction</strong></td>
+            <td>Scans the entire model (and its links) to extract the complete list of elements with their actual physical quantities.</td>
+        </tr>
+        <tr>
+            <td><strong>Blue buttons: Isolate / Restore</strong></td>
+            <td>Select a row in the table and click 'Isolate' to only show this object in 3D in Revit. 'Restore' cancels this isolation.</td>
+        </tr>
+        <tr>
+            <td><strong>Green button: Export Estimate (.xlsx)</strong></td>
+            <td>Generates a perfectly formatted Excel file containing all the data from your table, ideal for costing.</td>
+        </tr>
+        <tr>
+            <td><strong>Import/Export buttons (.sbp)</strong></td>
+            <td>Allows saving your current table (and especially your entered unit prices) to a proprietary .sbp file to reload it later.</td>
+        </tr>
+        <tr>
+            <td><strong>Total Estimated Amount</strong></td>
+            <td>Dynamically updates at the bottom right based on the unit prices you entered in the table.</td>
+        </tr>
+    </table>
+
+    <h2>5. Dashboard (Global Dashboard)</h2>
+    <p>The control center that monitors the health of your projects and the progress of your BIM coordination.</p>
+    <table>
+        <tr>
+            <th>Element</th>
+            <th>Description and Operation</th>
+        </tr>
+        <tr>
+            <td><strong>Progress charts</strong></td>
+            <td>Visually displays the ratio of "Resolved" vs "Active" clashes by reading the data from your XML file.</td>
+        </tr>
+        <tr>
+            <td><strong>Health Indicator (Score)</strong></td>
+            <td>Overall score given to your model based on data quality (parameters) and the presence of duplicates.</td>
+        </tr>
+        <tr>
+            <td><strong>Button: Refresh data</strong></td>
+            <td>Forces a reread of the XML file and the model to update all your charts in real time.</td>
+        </tr>
+    </table>
+
+</body>
+</html>

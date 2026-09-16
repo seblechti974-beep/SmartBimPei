@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SmartBimPeï - User Manual</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 2rem; color: #333; }
+        h1, h2, h3 { color: #0056b3; }
+        h1 { border-bottom: 2px solid #0056b3; padding-bottom: 0.5rem; }
+        h2 { border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; margin-top: 2rem; }
+        .alert { background: #e7f3fe; border-left: 6px solid #2196F3; padding: 15px; margin-bottom: 15px; }
+        ul, ol { margin-bottom: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+        strong { color: #000; }
+        img { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; padding: 5px; margin: 15px 0; display: block; }
+    </style>
+</head>
+<body>
+    <h1>📘 SmartBimPeï - User Manual</h1>
+    <p><strong>SmartBimPeï</strong> is the premier software suite integrated into Revit®, designed to simplify the lives of BIM Managers, Coordinators, Designers, and Company Executives. This manual will guide you through using the plugin's 5 key modules.</p>
+
+    <h2>⚙️ Module 1: Smart Clash Detector (Geometric Synthesis Engine)</h2>
+    <p>Forget time-consuming clash detection processes. SmartBimPeï finds clashes, understands them, and offers concrete solutions in a single click.</p>
+
+    <img src="images/photo1.png" alt="Main Interface of Smart Clash Detector">
+
+    <h3>1. The Configuration Panel (Left)</h3>
+    <p>This panel allows you to set up your search "surgically".</p>
+    <ul>
+        <li><strong>Selection Model A & Model B</strong>: Precisely choose the models and categories (e.g., MEP Ducts against Architectural Walls) to cross-check, avoiding unnecessary full-model analysis.</li>
+        <li><strong>Tolerance (mm)</strong>: Define the acceptable penetration distance to avoid "false positives" (e.g., insulation slightly touching a wall).</li>
+        <li><strong>"Min. Size" Filters</strong>: Enter a minimum dimension below which the conflict is ignored. Drastically reduces calculation time!</li>
+        <li><strong>Auto-Opening Margin</strong>: Specifies the offset (e.g., 50mm) added around the duct when generating openings to anticipate insulation clearance.</li>
+    </ul>
+
+    <h3>2. The Synthesis Table (Center)</h3>
+    <ul>
+        <li><strong>Smart Grouping</strong>: The plugin automatically groups very close clashes under a single ID, reducing visual fatigue for the coordinator.</li>
+        <li><strong>"Opening Dimension" Column</strong>: Displays in real-time the final dimensions of the hole/opening to be cut. The architectural impact is immediately visible.</li>
+    </ul>
+
+    <h3>3. Resolution Actions (Bottom)</h3>
+    <ul>
+        <li>👁️ <strong>Isolate Clash</strong>: Opens a centered 3D view. The plugin automatically applies a clear graphical template: a transparent grey environment with the clashing elements opaque and highly contrasted. Instant understanding guaranteed.</li>
+    </ul>
+
+    <img src="images/photo4.png" alt="Isolated 3D Visual Rendering">
+
+    <ul>
+        <li>🕳️ <strong>Generate Auto-Opening(s)</strong>: In one click, the plugin places "void" families at the exact locations. The tool handles the creation of rectangular and circular voids in a fraction of a second, a task that would have taken you hours manually.</li>
+    </ul>
+
+    <img src="images/photo8.png" alt="Auto-Openings Generation">
+
+    <h3>4. Exports (Communication)</h3>
+    <ul>
+        <li>🔄 <strong>BCF Export</strong>: Generates a <code>.bcfzip</code> file incorporating perfect cameras (the famous "Magic Zoom" that prevents having your head stuck in a wall), statuses, and comments for your BIMcollab or BIM Track platforms.</li>
+    </ul>
+
+    <img src="images/photo5.png" alt="BCF Export for BIMcollab">
+
+    <ul>
+        <li>📄 <strong>PDF & CSV Export</strong>: Perfect for quickly extracting a visual or Excel report for the coordination meeting.</li>
+    </ul>
+
+    <img src="images/photo6.png" alt="PDF Export">
+
+    <h2>📈 Module 2: BIM Health Dashboard</h2>
+    <p><strong>The ultimate tool for Management and BIM Managers.</strong><br>
+    This module acts as the control tower for your project. At a glance, you get:</p>
+    <ul>
+        <li><strong>The Global Health Score</strong> out of 100 for your model.</li>
+        <li>The total number of <strong>Unresolved Clashes</strong>.</li>
+        <li>The number of <strong>MEP Duplicates</strong> detected.</li>
+        <li>The global <strong>Financial Estimate</strong> of the networks (connected to the QTO module).</li>
+    </ul>
+
+    <div class="alert">
+        <strong>💡 Added Value:</strong> Ideal for evaluating the quality of a received model or for showcasing the cleanup work accomplished by the BIM team.
+    </div>
+
+    <img src="images/photo7.png" alt="BIM Health Dashboard">
+
+    <h2>🧹 Module 3: Duplicate Detector (Model Cleaner)</h2>
+    <p>This module launches an ultra-fast analysis to find all perfectly overlapping elements (often copied by mistake).</p>
+    <ul>
+        <li>Select the categories to scan (Ducts, Pipes, etc.).</li>
+        <li>The table lists the exact duplicates.</li>
+        <li>Click <strong>Delete Selection</strong> to purge the model.</li>
+        <li><strong>The goal?</strong> Prevent major financial errors during material ordering.</li>
+    </ul>
+
+    <img src="images/photo2.png" alt="Duplicate Detector">
+
+    <h2>🕵️‍♂️ Module 4: BIM Data Audit & Compliance (Quality Control & CMMS)</h2>
+    <p>This is your Data Police. In one click, it validates that all information required for the As-Built (Handover) and CMMS is present.</p>
+    <ol>
+        <li>Choose your Trade in the drop-down menu:
+            <ul>
+                <li><strong>Architecture (Interiors & Openings)</strong></li>
+                <li><strong>Structure</strong></li>
+                <li><strong>Plumbing</strong></li>
+                <li><strong>HVAC</strong></li>
+                <li><strong>Electrical</strong></li>
+            </ul>
+        </li>
+        <li>Run the audit.</li>
+        <li>The plugin will intelligently look for the required information (Fire Rating, Mark, Manufacturer, Model, Room/Space location...).<br>
+        <em>(Tip: The plugin is smart enough to look for the data in the object itself, and if it's not there, it will automatically check the Type Properties!)</em></li>
+        <li>The table lists the non-compliances, with an explanatory comment on the business impact (e.g., "Without a Manufacturer, impossible to order the spare part"). Double-click to isolate the faulty object and correct its data.</li>
+    </ol>
+
+    <img src="images/photo9.png" alt="BIM Data Audit">
+
+    <h2>💰 Module 5: Métré Express (Quantities & Pricing)</h2>
+    <p>A tool designed for construction economists and estimating assistance.</p>
+    <ul>
+        <li>Choose a network (e.g., Circular Duct).</li>
+        <li>The table instantly displays the real lengths, areas, and diameters extracted from the 3D model.</li>
+        <li>Enter a Unit Price in the dedicated column.</li>
+        <li>The total price updates live. You can then export your estimate in Excel format.</li>
+    </ul>
+
+    <img src="images/photo3.png" alt="Métré Express">
+
+    <hr>
+    <p><em>This manual is designed to support team upskilling. SmartBimPeï is not just a tool; it's a major competitive advantage for your BIM processes!</em></p>
+</body>
+</html>
