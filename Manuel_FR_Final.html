@@ -284,27 +284,66 @@
         Pour partager votre analyse avec d'autres intervenants (ex: BET Structure), <strong>envoyez-leur toujours la maquette <code>.rvt</code> ET le fichier <code>.xml</code> dans le même dossier</strong>. Ils verront ainsi tout l'historique des conflits directement dans leur interface !
     </div>
 
-    <h2>2. Audit Qualité des Données (Data & DOE)</h2>
-    <p>Ce module vérifie de manière automatisée si les éléments de votre maquette sont correctement renseignés selon des règles prédéfinies.</p>
+        <h2>2. Module 4 : Audit BIM (Nouvelle version unifiée)</h2>
+    <p>Ce module centralise désormais tout le contrôle qualité de votre maquette. Il fusionne l'ancienne vérification des données avec le système d'Audit pour vous permettre de valider instantanément le respect de votre Charte BIM ou de vos paramètres partagés.</p>
+    
+    <h3>2.1 La fenêtre principale (Lancement de l'Audit)</h3>
+    <img src="images/photo9.png" alt="Fenêtre principale Audit BIM" style="max-width:100%; margin:10px 0;">
     <table>
         <tr>
-            <th>Élément</th>
-            <th>Description et Fonctionnement</th>
+            <th>Commande</th>
+            <th>Description</th>
         </tr>
         <tr>
-            <td><strong>Sélectionner le Corps d'état</strong></td>
-            <td>Choisissez la discipline à inspecter (ex: Architecture (Second Œuvre)). Les règles de validation liées à ce corps d'état sont chargées automatiquement en arrière-plan.</td>
+            <td><strong>Profil d'audit (Liste déroulante)</strong></td>
+            <td>Sélectionnez un profil système préconfiguré ou choisissez un profil personnalisé (Charte BIM) que vous avez créé.</td>
         </tr>
         <tr>
-            <td><strong>Bouton bleu : Lancer l'audit des données</strong></td>
-            <td>Scanne l'ensemble du projet. S'il trouve des éléments non conformes (paramètres manquants ou erronés), il les listera dans le "Rapport de non-conformité" à droite.</td>
+            <td><strong>Créer / Éditer Règles</strong></td>
+            <td>Ouvre l'éditeur de Charte BIM pour modifier le profil sélectionné ou en créer un nouveau.</td>
         </tr>
         <tr>
-            <td><strong>Bouton vert : Résoudre automatiquement</strong></td>
-            <td>Applique une correction automatique en lot sur les éléments non conformes détectés, lorsque la règle le permet.</td>
+            <td><strong>Lancer l'Audit</strong></td>
+            <td>Scanne l'ensemble de la maquette Revit selon les règles du profil choisi et affiche la liste des non-conformités (Élément, Sévérité, Description).</td>
+        </tr>
+        <tr>
+            <td><strong>Auto-Résoudre</strong></td>
+            <td>Tente de corriger automatiquement certaines erreurs courantes sélectionnées dans la liste.</td>
+        </tr>
+        <tr>
+            <td><strong>Exporter CSV</strong></td>
+            <td>Exporte les résultats de l'audit vers un fichier Excel (CSV) pour vos rapports.</td>
         </tr>
     </table>
 
+    <h3>2.2 L'Éditeur de Charte BIM (Création des règles)</h3>
+    <p>C'est ici que vous définissez les règles strictes de votre projet.</p>
+    <table>
+        <tr>
+            <th>Commande</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>Générer depuis TXT (Paramètres Partagés)</strong></td>
+            <td><em>Fonctionnalité phare.</em> Importez directement le fichier .txt des paramètres partagés fournis par le BIM Manager. Le plugin générera automatiquement toutes les règles pour vérifier que ces paramètres sont bien présents !</td>
+        </tr>
+        <tr>
+            <td><strong>Ajouter une règle</strong></td>
+            <td>Ajoute une ligne vide pour créer une règle manuelle. Vous pouvez vérifier le nommage (avec masques *), la présence ou la valeur exacte d'un paramètre.</td>
+        </tr>
+        <tr>
+            <td><strong>Supprimer la sélection</strong></td>
+            <td>Efface la règle actuellement sélectionnée dans le tableau.</td>
+        </tr>
+        <tr>
+            <td><strong>Mode d'emploi (Guide) ?</strong></td>
+            <td>Affiche une aide rapide sur l'utilisation des masques de saisie.</td>
+        </tr>
+        <tr>
+            <td><strong>Sauvegarder la charte</strong></td>
+            <td>Enregistre vos règles sous le nom de profil indiqué en haut à gauche.</td>
+        </tr>
+    </table>
     <h2>3. Détecteur de Doublons</h2>
     <p>Ce module scanne la maquette pour identifier rapidement les éléments superposés (modélisés deux fois au même endroit).</p>
     <table>

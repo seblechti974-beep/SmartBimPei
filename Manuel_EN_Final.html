@@ -284,27 +284,66 @@
         To share your analysis with other stakeholders (e.g., Structural Engineer), <strong>always send them the <code>.rvt</code> model AND the <code>.xml</code> file in the same folder</strong>. They will then see the entire clash history directly in their interface!
     </div>
 
-    <h2>2. Data Quality Audit (Data & As-Built)</h2>
-    <p>This module automatically checks if the elements of your model are properly populated according to predefined rules.</p>
+        <h2>2. Module 4: BIM Audit (Unified Version)</h2>
+    <p>This module now centralizes all quality control for your model. It merges the former data verification tool with the Audit system, allowing you to instantly validate compliance with your BIM Execution Plan (BEP) or shared parameters.</p>
+    
+    <h3>2.1 Main Window (Running the Audit)</h3>
+    <img src="images/photo9.png" alt="BIM Audit Main Window" style="max-width:100%; margin:10px 0;">
     <table>
         <tr>
-            <th>Element</th>
-            <th>Description and Operation</th>
+            <th>Control</th>
+            <th>Description</th>
         </tr>
         <tr>
-            <td><strong>Select Discipline</strong></td>
-            <td>Choose the discipline to inspect (e.g., Architecture (Interior Finishes)). The validation rules linked to this discipline are automatically loaded in the background.</td>
+            <td><strong>Audit Profile (Dropdown)</strong></td>
+            <td>Select a pre-configured system profile or choose a custom profile (BIM Charter) you have created.</td>
         </tr>
         <tr>
-            <td><strong>Blue button: Run data audit</strong></td>
-            <td>Scans the entire project. If it finds non-compliant elements (missing or incorrect parameters), it will list them in the "Non-compliance report" on the right.</td>
+            <td><strong>Create / Edit Rules</strong></td>
+            <td>Opens the BIM Charter Editor to modify the selected profile or create a new one.</td>
         </tr>
         <tr>
-            <td><strong>Green button: Auto-resolve</strong></td>
-            <td>Applies a batch automatic correction on the detected non-compliant elements, when the rule allows it.</td>
+            <td><strong>Run Audit</strong></td>
+            <td>Scans the entire Revit model according to the chosen profile's rules and displays the list of non-conformities (Element, Severity, Description).</td>
+        </tr>
+        <tr>
+            <td><strong>Auto-Resolve</strong></td>
+            <td>Attempts to automatically fix certain common errors selected in the list.</td>
+        </tr>
+        <tr>
+            <td><strong>Export CSV</strong></td>
+            <td>Exports the audit results to an Excel-compatible CSV file for your coordination reports.</td>
         </tr>
     </table>
 
+    <h3>2.2 BIM Charter Editor (Creating Rules)</h3>
+    <p>This is where you define the strict data rules for your project.</p>
+    <table>
+        <tr>
+            <th>Control</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>Generate from TXT (Shared Parameters)</strong></td>
+            <td><em>Key Feature.</em> Directly import the shared parameters .txt file provided by the BIM Manager. The plugin will automatically generate all the necessary rules to check if these parameters are present!</td>
+        </tr>
+        <tr>
+            <td><strong>Add a rule</strong></td>
+            <td>Adds a blank row to create a manual rule. You can check naming conventions (using * wildcard), parameter presence, or exact parameter values.</td>
+        </tr>
+        <tr>
+            <td><strong>Delete Selection</strong></td>
+            <td>Removes the currently selected rule in the grid.</td>
+        </tr>
+        <tr>
+            <td><strong>User Guide</strong></td>
+            <td>Displays quick help on how to use input masks.</td>
+        </tr>
+        <tr>
+            <td><strong>Save Charter</strong></td>
+            <td>Saves your custom rules under the profile name entered at the top left.</td>
+        </tr>
+    </table>
     <h2>3. Duplicate Detector</h2>
     <p>This module scans the model to quickly identify overlapping elements (modeled twice in the same place).</p>
     <table>
