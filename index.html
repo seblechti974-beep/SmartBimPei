@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <!-- Google Tag Manager -->
@@ -93,9 +93,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 15px;">Obtenez la suite complète (Valeur 500€/an) pour seulement 500€ à vie.</p>
                 <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 25px;">Attention : Cette licence à vie est strictement limitée aux <strong>50 premiers clients</strong>. Le plugin passera ensuite sous forme d'abonnement annuel.</p>
                 
-                <a href="#trial-form-container" onclick="alert('L\'ouverture officielle des ventes est prévue dans quelques jours (en cours de validation bancaire).\n\nEn attendant, nous vous offrons 15 jours d\'essai 100% gratuit !\n\nRemplissez le formulaire ci-dessous pour tester le plugin dès maintenant.');" class="btn" style="font-size: 1.2rem; padding: 15px 40px; box-shadow: 0 4px 15px rgba(6, 150, 215, 0.4);">
-                    Acheter la Licence à vie (500€)
-                </a>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    <a href="#trial-form-container" class="btn" style="font-size: 1.15rem; padding: 15px 30px; background-color: var(--autodesk-blue); box-shadow: 0 4px 15px rgba(6, 150, 215, 0.4);">
+                        <i class="fas fa-download" style="margin-right: 8px;"></i> Télécharger l'essai gratuit (15 jours)
+                    </a>
+                    <a href="#trial-form-container" onclick="alert('L\'ouverture officielle des ventes est prévue dans quelques jours (en cours de validation bancaire).\n\nEn attendant, nous vous offrons 15 jours d\'essai 100% gratuit !\n\nRemplissez le formulaire ci-dessous pour tester le plugin dès maintenant.');" class="btn" style="font-size: 1.15rem; padding: 15px 30px; background-color: #2c3e50; box-shadow: none;">
+                        <i class="fas fa-shopping-cart" style="margin-right: 8px;"></i> Acheter la Licence à vie (500€)
+                    </a>
+                </div>
             </div>
         </header>
         <div style="text-align: center; margin-bottom: 60px; padding: 20px; background-color: var(--bg-light); border-radius: 8px;">
@@ -233,9 +238,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h3 style="font-size: 1.3rem; font-weight: 300; color: var(--text-muted); margin-bottom: 20px; font-style: italic;">Ready to transform your BIM workflow?</h3>
             
             <div style="text-align: center; margin-bottom: 40px;">
-                <a href="#trial-form-container" onclick="alert('L\'ouverture officielle des ventes est prévue dans quelques jours (en cours de validation bancaire).\n\nEn attendant, nous vous offrons 15 jours d\'essai 100% gratuit !\n\nRemplissez le formulaire ci-dessous pour tester le plugin dès maintenant.');" class="btn" style="font-size: 1.2rem; padding: 15px 40px; box-shadow: 0 4px 15px rgba(6, 150, 215, 0.4);">
-                    Acheter la Licence à vie (500€)
-                </a>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    <a href="#trial-form-container" class="btn" style="font-size: 1.15rem; padding: 15px 30px; background-color: var(--autodesk-blue); box-shadow: 0 4px 15px rgba(6, 150, 215, 0.4);">
+                        <i class="fas fa-download" style="margin-right: 8px;"></i> Télécharger l'essai gratuit (15 jours)
+                    </a>
+                    <a href="#trial-form-container" onclick="alert('L\'ouverture officielle des ventes est prévue dans quelques jours (en cours de validation bancaire).\n\nEn attendant, nous vous offrons 15 jours d\'essai 100% gratuit !\n\nRemplissez le formulaire ci-dessous pour tester le plugin dès maintenant.');" class="btn" style="font-size: 1.15rem; padding: 15px 30px; background-color: #2c3e50; box-shadow: none;">
+                        <i class="fas fa-shopping-cart" style="margin-right: 8px;"></i> Acheter la Licence à vie (500€)
+                    </a>
+                </div>
             </div>
             <div style="max-width: 800px; margin: 0 auto; background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: 500; text-align: center;">
                 📣 Votre avis est précieux ! Vous avez testé le plugin ? Utilisez le formulaire ci-dessous pour me faire vos retours. Cela m'aide énormément à perfectionner l'outil.
@@ -300,12 +310,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 
             <script>
-                if (window.location.search.indexOf('success=true') > -1) {
+                document.addEventListener('DOMContentLoaded', function() {
+                    var form = document.getElementById('trial-form');
                     var container = document.getElementById('trial-form-container');
-                    if(container) {
-                        container.innerHTML = '<div style="background: #e8f6f3; color: #1abc9c; padding: 25px; border-radius: 6px; text-align: center; font-weight: 600; font-size: 1.1rem;">✓ Votre demande a bien été envoyée.<br><br>Vous recevrez votre accès d\'essai de 15 jours sous peu !</div>';
+                    
+                    if (form) {
+                        form.addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            
+                            // 1. Déclencher immédiatement le téléchargement direct du ZIP
+                            var dlLink = document.createElement('a');
+                            dlLink.href = 'SmartBimPei_Package.zip';
+                            dlLink.setAttribute('download', 'SmartBimPei_Package.zip');
+                            document.body.appendChild(dlLink);
+                            dlLink.click();
+                            document.body.removeChild(dlLink);
+                            
+                            // 2. Afficher la confirmation avec instructions claires et bouton de secours
+                            if (container) {
+                                container.innerHTML = 
+                                    '<div style="background: #e8f6f3; border: 2px solid #1abc9c; color: #2c3e50; padding: 35px 25px; border-radius: 8px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">' +
+                                        '<div style="font-size: 3.5rem; color: #1abc9c; margin-bottom: 15px;"><i class="fas fa-check-circle"></i></div>' +
+                                        '<h3 style="margin-top: 0; color: #2c3e50; font-size: 1.6rem; margin-bottom: 12px;">Demande validée avec succès !</h3>' +
+                                        '<p style="font-size: 1.1rem; color: #444; margin-bottom: 25px; line-height: 1.6;">' +
+                                            'Le téléchargement de votre package d\'essai <strong>SmartBimPeï (15 jours gratuits)</strong> démarre automatiquement.' +
+                                        '</p>' +
+                                        '<div style="margin-bottom: 25px;">' +
+                                            '<a href="SmartBimPei_Package.zip" download class="btn" style="background-color: var(--autodesk-blue); padding: 14px 30px; font-size: 1.05rem; display: inline-block; text-decoration: none; color: #fff; border-radius: 4px; font-weight: 600;">' +
+                                                '<i class="fas fa-download" style="margin-right: 8px;"></i> Cliquez ici si le téléchargement ne démarre pas' +
+                                            '</a>' +
+                                        '</div>' +
+                                        '<div style="background: #ffffff; padding: 20px; border-radius: 6px; border: 1px solid #d5dbdb; font-size: 0.95rem; color: #555; text-align: left; max-width: 500px; margin: 0 auto; line-height: 1.6;">' +
+                                            '<strong style="color: #2c3e50;"><i class="fas fa-info-circle" style="color: var(--autodesk-blue); margin-right: 5px;"></i> Comment installer et démarrer :</strong><br>' +
+                                            '1. Décompressez le fichier <code>SmartBimPei_Package.zip</code>.<br>' +
+                                            '2. Double-cliquez sur <code>Install_SmartBimPei.exe</code>.<br>' +
+                                            '3. Démarrez Revit : votre essai complet de 15 jours s\'active en un clic directement dans Revit !' +
+                                        '</div>' +
+                                    '</div>';
+                                container.scrollIntoView({ behavior: 'smooth' });
+                            }
+                            
+                            // 3. Envoyer les coordonnées en arrière-plan sans bloquer
+                            try {
+                                var formData = new FormData(form);
+                                fetch('https://formsubmit.co/ajax/contact@smartbimpei.com', {
+                                    method: 'POST',
+                                    body: formData,
+                                    headers: { 'Accept': 'application/json' }
+                                }).catch(function(err) {
+                                    console.warn('Notice sync:', err);
+                                });
+                            } catch(err) {
+                                console.warn(err);
+                            }
+                        });
                     }
-                }
+                    
+                    if (window.location.search.indexOf('success=true') > -1) {
+                        if (container) {
+                            container.innerHTML = '<div style="background: #e8f6f3; color: #1abc9c; padding: 25px; border-radius: 6px; text-align: center; font-weight: 600; font-size: 1.1rem;">✓ Votre demande a bien été envoyée.<br><br>Votre téléchargement démarre sous peu !</div>';
+                        }
+                    }
+                });
             </script>
 
             <div class="copyright">© 2026 SmartBimPeï. Designed and developed by Sébastien Nigro. Based in Réunion Island.</div>
